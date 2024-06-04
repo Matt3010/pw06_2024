@@ -6,10 +6,16 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
 import {TableModule} from 'primeng/table';
 import {TooltipModule} from "ngx-bootstrap/tooltip";
-import {PagesComponent} from "./pages.component";
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { OtpComponent } from './auth/otp/otp.component';
 
 @NgModule({
-    declarations: [PagesComponent],
+    declarations: [
+    LoginComponent,
+    RegisterComponent,
+    OtpComponent
+  ],
     imports: [
         CommonModule,
         PagesRoutingModule,

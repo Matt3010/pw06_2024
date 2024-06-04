@@ -8,10 +8,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from "ngx-toastr";
 
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
+import {BoilerplateComponent} from "./pages/auth/boilerplate/boilerplate.component";
+import {PagesComponent} from "./pages/pages.component";
 
 @NgModule({
     declarations: [
         AppComponent,
+        PagesComponent,
+        BoilerplateComponent
     ],
     imports: [
         BrowserModule,
