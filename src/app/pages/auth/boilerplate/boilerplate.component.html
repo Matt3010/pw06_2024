@@ -5,12 +5,19 @@
         <div class="col-auto">
             <img width="60px" src="assets/project/logo.svg" alt="logo">
         </div>
-        <div class="col-auto">
+        <div class="col">
             <router-outlet></router-outlet>
+            <div class="w-100 d-flex justify-content-center mt-2">
+                <small *ngIf="router.url.includes('login')">
+                    Don't have an account? <a routerLink="/auth/register">Register</a>
+                </small>
+                <small *ngIf="router.url.includes('register')">
+                    Already have an account? <a routerLink="/auth/login">Log in</a>
+                </small>
+            </div>
+
         </div>
-
     </div>
-
 
 </div>
 

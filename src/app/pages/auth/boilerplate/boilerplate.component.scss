@@ -38,9 +38,37 @@
 
 @media screen and (max-width: 600px) {
   .container-boilerplate {
+
     border-radius: 0;
     width: 100%;
     min-height: 100%;
     height: 100%;
    }
+}
+
+
+
+::ng-deep {
+  .form-title {
+    font-size: 21px;
+    font-weight: 600;
+  }
+
+  .form-submit-button {
+    background-color: rgb(255, 89, 97);
+    border: solid rgb(253, 56, 56) 0.5px;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 10px 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    &:hover {
+      filter: opacity(0.8);
+      transition: all 0.2s;
+    }
+    &:not(:hover) {
+      filter: opacity(1);
+      transition: all 0.2s;
+    }
+  }
+
 }
