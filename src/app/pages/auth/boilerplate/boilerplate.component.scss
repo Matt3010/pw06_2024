@@ -27,12 +27,11 @@
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }
-
  }
 
 .container-boilerplate {
   width: 400px;
-  min-height: 60%;
+  min-height: auto;
   max-height: 600px;
   overflow: auto;
   z-index: 10;

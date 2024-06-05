@@ -1,5 +1,5 @@
-<form [formGroup]="registerForm" class="row flex-column justify-content-center align-items-center">
-
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()"
+      class="row position-relative flex-column justify-content-center align-items-center">
     <div class="col py-3 d-flex justify-content-center">
         <span class="form-title">
             Register here!
@@ -7,19 +7,32 @@
     </div>
 
     <div class="col p-0">
-        <input type="text" class="form-control my-2" placeholder="Email">
+        <input [class]="" formControlName="email" type="text" class="form-control my-2" placeholder="Email">
     </div>
 
     <div class="col p-0">
-        <input type="text" class="form-control my-2" placeholder="Password">
+        <input formControlName="password" type="text" class="form-control my-2" placeholder="Password">
     </div>
 
     <div class="col p-0">
-        <input type="text" class="form-control my-2" placeholder="Confirm your password">
+        <input formControlName="confirm_password" type="text" class="form-control my-2"
+               placeholder="Confirm your password">
     </div>
 
     <div class="col d-flex justify-content-end p-0">
-        <button class="form-submit-button w-100">Register</button>
+        <button type="submit" class="form-submit-button w-100">Register</button>
+    </div>
+
+
+    <div class="col position-relative error-popup d-flex align-items-center" *ngIf="errors.length > 0">
+
+        <img class="close" (click)="errors = []" width="20px" src="assets/project/close.svg" alt="close">
+
+        <ul class="m-0 p-0">
+          <li *ngFor="let error of errors">
+            {{error | titlecase}}
+          </li>
+        </ul>
     </div>
 
 
