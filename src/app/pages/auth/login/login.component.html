@@ -1,1 +1,17 @@
-<p>login works!</p>
+<form (ngSubmit)="login()" class="row flex-column align-items-center justify-content-center">
+  <div class="col d-flex justify-content-center py-3">
+    <span class="form-title"> Login </span>
+  </div>
+  <div class="col my-1">
+    <input type="email" class="form-control" placeholder="Email" />
+  </div>
+  <div class="col my-1">
+    <input type="password" class="form-control" placeholder="Password" />
+  </div>
+  <div class="col my-1">
+    <a href=""> Forgot your password? </a>
+  </div>
+  <div class="col">
+    <button type="submit" class="form-submit-button my-1 w-100">Login</button>
+  </div>
+</form>

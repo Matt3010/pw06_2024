@@ -1,22 +1,29 @@
 <div class="vh-100 d-flex justify-content-center align-items-center">
 
-    <div class="container-boilerplate p-3 row flex-column align-items-center justify-content-around">
+    <div class="container-boilerplate p-3 row flex-column align-items-center justify-content-center">
 
         <div class="col-auto">
-            <img width="60px" src="assets/project/logo.svg" alt="logo">
+            <img width="40px" src="assets/project/logo.png" alt="logo">
         </div>
-        <div class="col-auto">
+        <div class="col-auto w-100">
             <router-outlet></router-outlet>
+            <div class="w-100 d-flex justify-content-center mt-2">
+                <small *ngIf="router.url.includes('login')">
+                    Don't have an account? <a routerLink="/auth/register">Register</a>
+                </small>
+                <small *ngIf="router.url.includes('register')">
+                    Already have an account? <a routerLink="/auth/login">Log in</a>
+                </small>
+            </div>
+
         </div>
-
     </div>
-
 
 </div>
 
 
 <div class="bg-image-container">
-    <img class="golden_img" src="assets/project/golden_bg.jpg" alt="bg-image">
+    <img class="golden_img" src="assets/project/cloud.jpeg" alt="bg-image">
     <div class="opacity-overlay"></div>
 </div>
 
