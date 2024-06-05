@@ -1,12 +1,12 @@
-<form (ngSubmit)="login()" class="row flex-column align-items-center justify-content-center">
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="row flex-column align-items-center justify-content-center">
   <div class="col d-flex justify-content-center">
     <span class="form-title py-3"> Login </span>
   </div>
   <div class="col p-0">
-    <input type="email" class="form-control my-2" placeholder="Email" />
+    <input type="email" class="form-control my-2" placeholder="Email" formControlName="email"/>
   </div>
   <div class="col p-0">
-    <input type="password" class="form-control my-2" placeholder="Password" />
+    <input type="password" class="form-control my-2" placeholder="Password" formControlName="password"/>
   </div>
   <div class="col p-0">
     <a href="" class="my-2"> Forgot your password? </a>
@@ -14,4 +14,15 @@
   <div class="col p-0">
     <button type="submit" class="form-submit-button w-100 mt-2">Login</button>
   </div>
+
+  <div class="col position-relative error-popup d-flex align-items-center" *ngIf="errors.length > 0">
+
+    <img class="close" (click)="errors = []" width="20px" src="assets/project/close.svg" alt="close">
+
+    <ul class="m-0 p-0">
+      <li *ngFor="let error of errors">
+        {{error | titlecase}}
+      </li>
+    </ul>
+</div>
 </form>
