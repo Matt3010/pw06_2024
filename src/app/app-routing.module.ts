@@ -1,9 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
 import {BoilerplateComponent} from "./pages/auth/boilerplate/boilerplate.component";
+import {RouterModule, Routes} from "@angular/router";
+import {OtpComponent} from "./pages/auth/otp/otp.component";
 import {LoginComponent} from "./pages/auth/login/login.component";
 import {RegisterComponent} from "./pages/auth/register/register.component";
-import {OtpComponent} from "./pages/auth/otp/otp.component";
+import {NgModule} from "@angular/core";
 
 const routes: Routes = [
     {

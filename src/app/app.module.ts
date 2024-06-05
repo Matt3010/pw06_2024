@@ -10,12 +10,19 @@ import {ToastrModule} from "ngx-toastr";
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {BoilerplateComponent} from "./pages/auth/boilerplate/boilerplate.component";
 import {PagesComponent} from "./pages/pages.component";
+import {LoginComponent} from "./pages/auth/login/login.component";
+import {RegisterComponent} from "./pages/auth/register/register.component";
+import {OtpComponent} from "./pages/auth/otp/otp.component";
+import {NgHcaptchaModule} from "ng-hcaptcha";
 
 @NgModule({
     declarations: [
         AppComponent,
         PagesComponent,
-        BoilerplateComponent
+        BoilerplateComponent,
+        LoginComponent,
+        RegisterComponent,
+        OtpComponent,
     ],
     imports: [
         BrowserModule,
@@ -26,6 +33,10 @@ import {PagesComponent} from "./pages/pages.component";
         BrowserAnimationsModule,
         ToastrModule.forRoot(),
         TooltipModule.forRoot(),
+        NgHcaptchaModule.forRoot({
+            siteKey: '1af6130c-b0ac-4bf3-bb20-7d4b902e36a1',
+            languageCode: 'it'
+        }),
     ],
     providers: [],
     bootstrap: [AppComponent]
