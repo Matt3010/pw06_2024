@@ -1,0 +1,23 @@
+<div *ngIf="message === 'email-not-verified'" class="message-box col-12 d-flex align-items-center" style="gap: 10px">
+    <img width="60px" src="assets/project/error.svg" alt="errorS">
+    <span>Your email is not verified! Please check your email's inbox.</span>
+</div>
+
+<div *ngIf="message === 'email-verifying'" class="message-box col-12 d-flex justify-content-around align-items-center">
+    <img width="40px" class="loading" src="assets/project/loading.svg" alt="errors">
+    <span>We are verifying your email!</span>
+</div>
+
+<div *ngIf="message === 'email-verified'" class="message-box col-12 d-flex justify-content-center align-items-center" style="gap: 20px">
+    <img width="60px" src="assets/project/check.svg" alt="errors">
+    <div class="d-flex flex-column">
+        <span>Email verified successfully!</span>
+        <a routerLink="/auth/login">Go to login!</a>
+    </div>
+</div>
+
+<div *ngIf="message === 'email-check'" class="message-box fs-6 col-12 d-flex justify-content-center flex-column align-items-center">
+    <span class="text-center">You must verify your email to log in! <span class="fw-bold">Check your emails</span>.</span>
+</div>
+
+<button *ngIf="message === 'email-not-verified'" class="mt-2" (click)="history.back()">Go back</button>

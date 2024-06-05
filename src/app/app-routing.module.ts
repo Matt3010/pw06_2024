@@ -4,6 +4,9 @@ import {OtpComponent} from "./pages/auth/otp/otp.component";
 import {LoginComponent} from "./pages/auth/login/login.component";
 import {RegisterComponent} from "./pages/auth/register/register.component";
 import {NgModule} from "@angular/core";
+import {IsVerifiedComponent} from "./pages/auth/verified/ko/is-verified.component";
+import {ConfirmEmailComponent} from "./pages/auth/verified/confirm-email/confirm-email.component";
+import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails.component";
 
 const routes: Routes = [
     {
@@ -36,6 +39,23 @@ const routes: Routes = [
             {
                 path: 'otp',
                 component: OtpComponent
+            },
+            {
+                path: 'verified',
+                children: [
+                    {
+                        path: 'ko',
+                        component: IsVerifiedComponent
+                    },
+                    {
+                        path: 'confirm-email',
+                        component: ConfirmEmailComponent
+                    },
+                    {
+                        path: 'check-email',
+                        component: CheckMailsComponent
+                    }
+                ],
             },
         ],
     }

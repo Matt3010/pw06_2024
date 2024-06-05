@@ -23,6 +23,7 @@
     "lodash": "^4.17.21",
     "ng-hcaptcha": "^2.2.0",
     "ngx-bootstrap": "^11.0.2",
+    "ngx-otp-input": "^0.11.4",
     "ngx-toastr": "^18.0.0",
     "primeng": "^16.9.1",
     "quill": "^1.3.7",

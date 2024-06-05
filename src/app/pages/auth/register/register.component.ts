@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {confirmPasswordValidator} from "../../../_utils/custom-validators/password-match.validator";
+import {AuthService} from "../../../_services/auth.service";
+import {MenuItem} from "primeng/api";
 
 @Component({
     selector: 'app-register',
@@ -10,18 +12,22 @@ import {confirmPasswordValidator} from "../../../_utils/custom-validators/passwo
 export class RegisterComponent {
 
     isDisabled: boolean = false;
-
+    step: number = 1;
     errors: string[] = [];
 
     registerForm: FormGroup = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>?]).{8,}$/)]),
         confirm_password: new FormControl('', [Validators.required]),
-        captcha: new FormControl('',[Validators.required])
+        captcha: new FormControl('',[Validators.required]),
+        first_name: new FormControl('',[Validators.required]),
+        last_name: new FormControl('',[Validators.required]),
     }, {validators: [confirmPasswordValidator]})
 
 
-    constructor() {
+    constructor(
+        private authService: AuthService
+    ) {
         this.registerForm.valueChanges.subscribe((res: any) => {
             this.getErrors();
         })
@@ -30,7 +36,16 @@ export class RegisterComponent {
 
     onSubmit() {
         if (this.registerForm.valid) {
-            console.log('jijn')
+            this.authService.register(
+                {
+                    firstName: this.registerForm.value.first_name,
+                    lastName: this.registerForm.value.last_name,
+                    username: this.registerForm.value.email,
+                    password: this.registerForm.value.password,
+                    confermaPassword: this.registerForm.value.confirm_password,
+                    picture: 'https://www.svgrepo.com/show/345418/account-circle.svg',
+                }
+             );
         } else {
             this.getErrors();
         }
@@ -61,7 +76,7 @@ export class RegisterComponent {
         if (this.registerForm.invalid) {
             Object.keys(this.registerForm.controls).forEach(field => {
                 const control = this.registerForm.get(field);
-                if (control && control.errors) {
+                if (control && control.errors && control.dirty) {
                     Object.keys(control.errors).forEach(errorKey => {
                         let errorMessage = '';
                         switch (errorKey) {

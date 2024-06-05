@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {AuthService} from "../../../_services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() {
+  constructor(
+      private authService: AuthService
+  ) {
     
   }
 
@@ -28,7 +31,12 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     if(this.loginForm.valid) {
-
+      this.authService.login(
+          {
+            username: this.loginForm.value.email,
+            password: this.loginForm.value.password
+          }
+      );
     } else {
       this.getErrors();
     }
@@ -39,7 +47,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       Object.keys(this.loginForm.controls).forEach(field => {
         const control = this.loginForm.get(field);
-        if (control && control.errors) {
+        if (control && control.errors && control.dirty) {
           Object.keys(control.errors).forEach(errorKey => {
             let errorMessage = '';
             switch (errorKey) {
