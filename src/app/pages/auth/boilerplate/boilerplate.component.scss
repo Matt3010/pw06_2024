@@ -4,6 +4,7 @@
   left:0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 187, 255, 0.15);
 
   .golden_img {
     width: 100%;
@@ -19,18 +20,23 @@
     width: 100%;
     height: 100%;
     background-color: #ffffff;
-    opacity: (0.4);
+
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
  }
 
 .container-boilerplate {
   width: 400px;
-  min-height: 200px;
+  min-height: 60%;
   max-height: 600px;
   overflow: auto;
   z-index: 10;
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
@@ -38,7 +44,6 @@
 
 @media screen and (max-width: 600px) {
   .container-boilerplate {
-
     border-radius: 0;
     width: 100%;
     min-height: 100%;
@@ -55,12 +60,13 @@
   }
 
   .form-submit-button {
-    background-color: rgb(255, 89, 97);
-    border: solid rgb(253, 56, 56) 0.5px;
-    border-radius: 8px;
+    background-color: #0a2463;
+    border: solid rgb(0, 19, 44) 0.5px;
+    border-radius: 4px;
     font-weight: 600;
     padding: 10px 0;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    color: white;
     &:hover {
       filter: opacity(0.8);
       transition: all 0.2s;
