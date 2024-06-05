@@ -5,7 +5,7 @@
         </div>
         <div class="col-auto w-100">
             <router-outlet></router-outlet>
-            <div class="w-100 d-flex justify-content-center mt-2">
+            <div class="w-100 d-flex justify-content-center mt-2" style="font-size: 14px">
                 <small *ngIf="router.url.includes('login')">
                     Don't have an account? <a routerLink="/auth/register">Register</a>
                 </small>

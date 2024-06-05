@@ -10,4 +10,10 @@ body {
 
 .form-control {
   border-radius: 4px !important;
+  color: black !important;
+
+  &::placeholder {
+    color: #c4c4c4;
+    font-weight: 300;
+  }
 }
