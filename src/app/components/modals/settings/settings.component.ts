@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../../_services/auth.service";
+import {ComponentInjectorService} from "../../../_utils/component-injector.service";
 
 @Component({
   selector: 'app-settings',
@@ -9,6 +10,7 @@ import {AuthService} from "../../../_services/auth.service";
 export class SettingsComponent {
 
   constructor(
+      public injectoreComponent: ComponentInjectorService,
       public authService: AuthService
   ) {
   }
