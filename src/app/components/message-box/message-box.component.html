@@ -1,12 +1,12 @@
 <div *ngIf="message === 'email-not-verified'" class="message-box col-12 d-flex align-items-center" style="gap: 10px">
     <img width="60px" src="assets/project/error.svg" alt="errorS">
     <div class="d-flex flex-column">
-        <span>Your email is not verified! </span>
+        <span class="fs-6">Your email is not verified! </span>
         <span> Please check your email's inbox.</span>
     </div>
 </div>
 
-<div *ngIf="message === 'email-verifying'" class="message-box col-12 d-flex justify-content-around align-items-center">
+<div *ngIf="message === 'email-verifying'" class="message-box col-12 d-flex justify-content-center align-items-center" style="gap: 20px">
     <img width="40px" class="loading" src="assets/project/loading.svg" alt="errors">
     <span>We are verifying your email!</span>
 </div>
@@ -14,8 +14,8 @@
 <div *ngIf="message === 'email-verified'" class="message-box col-12 d-flex justify-content-center align-items-center"
      style="gap: 20px">
     <img width="60px" src="assets/project/check.svg" alt="errors">
-    <div class="d-flex flex-column">
-        <span>Email verified successfully!</span>
+    <div class="d-flex flex-column col-auto">
+        <span class="fs-6">Email verified successfully!</span>
         <a routerLink="/auth/login">Go to login!</a>
     </div>
 </div>
@@ -23,8 +23,16 @@
 <div *ngIf="message === 'email-check'"
      class="message-box col-12 d-flex justify-content-center flex-column align-items-center">
     <div class="d-flex justify-content-center flex-column align-items-center">
-        <span class="text-center">You must verify your account to log in!</span>
-        <span class="fw-bold">Check your emails</span>
+        <span class="text-center fs-6">You must verify your account to log in!</span>
+        <span class="fw-bold">Check your emails.</span>
+    </div>
+</div>
+
+<div *ngIf="message === 'no-valide-link'"
+     class="message-box col-12 d-flex justify-content-center flex-column align-items-center">
+    <div class="d-flex justify-content-center flex-column align-items-center">
+        <span class="text-center fs-6">This link is not valid!</span>
+        <span class="fw-bold">Check your emails.</span>
     </div>
 </div>
 

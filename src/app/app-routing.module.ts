@@ -7,13 +7,25 @@ import {NgModule} from "@angular/core";
 import {IsVerifiedComponent} from "./pages/auth/verified/ko/is-verified.component";
 import {ConfirmEmailComponent} from "./pages/auth/verified/confirm-email/confirm-email.component";
 import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails.component";
+import {AuthGuard} from "./_guards/auth.guard";
 
 const routes: Routes = [
     {
         path: 'pages',
+        pathMatch: 'full',
+        redirectTo: 'pages/dashboard'
+    },
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'pages/dashboard'
+    },
+    {
+        path: 'pages',
         loadChildren: () => import('./pages/pages.module')
             .then(m => m.PagesModule),
-     },
+        canActivate: [AuthGuard]
+    },
     {
         path: 'auth',
         pathMatch: 'full',
@@ -37,7 +49,7 @@ const routes: Routes = [
                 component: RegisterComponent
             },
             {
-                path: 'otp',
+                path: 'otp/:userId',
                 component: OtpComponent
             },
             {

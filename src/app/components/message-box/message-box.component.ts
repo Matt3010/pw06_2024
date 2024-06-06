@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
     styleUrls: ['./message-box.component.scss']
 })
 export class MessageBoxComponent {
-    @Input() message: 'email-not-verified' | 'email-verifying' | 'email-verified' | 'email-check' |  null = null;
+    @Input() message: 'email-not-verified' | 'email-verifying' | 'email-verified' | 'email-check' | 'no-valide-link' |  null = null;
 
     history = history;
 

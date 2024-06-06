@@ -6,5 +6,5 @@
         </span>
     </div>
 
-    <app-message-box [message]="goToEmailSucceeded ? 'email-verified' : 'email-verifying'"></app-message-box>
+    <app-message-box [message]="goToEmailSucceeded === 1 ? 'no-valide-link' : (goToEmailSucceeded === 2 ? 'email-verifying' : 'email-verified')"></app-message-box>
 </div>

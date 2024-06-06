@@ -1,0 +1,26 @@
+.navbar {
+  backdrop-filter: blur(2px);
+}
+
+.navbar-title {
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.navbar-page {
+  font-weight: 400;
+  cursor: pointer;
+  padding: 0px;
+  margin: 10px;
+}
+.active {
+  color: #fb3740;
+}
+
+.logged-in-as, username {
+  text-align: right;
+}
+
+.username {
+  font-weight: 800;
+}

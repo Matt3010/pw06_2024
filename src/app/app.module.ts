@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from "ngx-toastr";
 
@@ -19,6 +19,9 @@ import {MessageBoxComponent} from "./components/message-box/message-box.componen
 import {IsVerifiedComponent} from "./pages/auth/verified/ko/is-verified.component";
 import {ConfirmEmailComponent} from "./pages/auth/verified/confirm-email/confirm-email.component";
 import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails.component";
+import { NavbarComponent } from './components/navbar/navbar.component';
+import {AuthInterceptor} from "./_interceptors/auth.interceptor";
+import { MdXlComponent } from './components/modals-templates/md-xl/md-xl.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +34,9 @@ import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails
         IsVerifiedComponent,
         MessageBoxComponent,
         ConfirmEmailComponent,
-        CheckMailsComponent
+        CheckMailsComponent,
+        NavbarComponent,
+        MdXlComponent
     ],
     imports: [
         BrowserModule,
@@ -46,9 +51,11 @@ import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails
             siteKey: '1af6130c-b0ac-4bf3-bb20-7d4b902e36a1',
             languageCode: 'it'
         }),
-        NgxOtpInputModule
+        NgxOtpInputModule,
     ],
-    providers: [],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

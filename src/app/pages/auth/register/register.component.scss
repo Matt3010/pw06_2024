@@ -4,7 +4,6 @@
   .entry {
     position: relative;
     top: -5px;
-    cursor: pointer;
     margin: 10px;
     padding: 5px;
     font-size: 14px;
@@ -15,3 +14,14 @@
     }
   }
 }
+
+.back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+ }

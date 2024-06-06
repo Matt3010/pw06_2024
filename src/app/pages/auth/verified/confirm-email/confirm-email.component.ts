@@ -9,7 +9,7 @@ import {AuthService} from "../../../../_services/auth.service";
 })
 export class ConfirmEmailComponent {
 
-    goToEmailSucceeded: boolean = false;
+    goToEmailSucceeded: 1 | 2 | 3 = 2;
 
     constructor(
         private route: ActivatedRoute,
@@ -20,16 +20,16 @@ export class ConfirmEmailComponent {
     ngOnInit() {
         this.route.queryParams
             .subscribe(params => {
-                    if (params['token']) {
+                    if (params['token'] !== undefined) {
                         this.authService.verifyEmail(params['token']).subscribe((res: any) => {
                             if (res.message === 'Email confirmed successfully') {
-                                this.goToEmailSucceeded = true;
+                                this.goToEmailSucceeded = 3;
                             } else {
-                                this.goToEmailSucceeded = false;
+                                this.goToEmailSucceeded = 1;
                             }
                         })
                     } else {
-                        this.goToEmailSucceeded = false;
+                        this.goToEmailSucceeded = 1;
                     }
                 }
             );

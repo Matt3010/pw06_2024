@@ -2,17 +2,17 @@
       class="row position-relative flex-column justify-content-center align-items-center">
     <div class="col py-3 d-flex justify-content-center">
         <span class="form-title">
-            Register here!
+            Enter OrderBridge team!
         </span>
     </div>
 
 
     <div class="tabs m-0 p-0 mb-3">
 
-        <span class="entry" (click)="step = 1" [class]="step === 1 ? 'entry-active' : null">
+        <span class="entry" [class]="step === 1 ? 'entry-active' : null">
             Personal info
         </span>
-        <span class="entry" (click)="step = 2" [class]="step === 2 ? 'entry-active' : null">
+        <span class="entry" [class]="step === 2 ? 'entry-active' : null">
             Account
         </span>
 
@@ -30,7 +30,8 @@
         </div>
 
         <div class="col d-flex justify-content-end p-0">
-            <button (click)="step = step + 1" [disabled]="registerForm.controls['first_name'].invalid || registerForm.controls['last_name'].invalid"
+            <button (click)="step = step + 1"
+                    [disabled]="registerForm.controls['first_name'].invalid || registerForm.controls['last_name'].invalid"
                     type="submit" class="form-submit-button w-100">Next
             </button>
         </div>
@@ -75,3 +76,8 @@
 
 
 </form>
+
+
+<span class="back m-0 p-0" *ngIf="step === 2" (click)="step = 1">
+       <img class="m-0 p-0" width="20px" src="assets/project/back.svg" alt="Go Back">
+</span>
