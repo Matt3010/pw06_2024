@@ -4,6 +4,7 @@ import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {FornitoriComponent} from "./fornitori/fornitori.component";
 import {ArticoliComponent} from "./articoli/articoli.component";
+import {MagazzinoComponent} from "./magazzino/magazzino.component";
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                component: DashboardComponent,
+                component: DashboardComponent
             },
             {
                 path: 'fornitori',
@@ -22,6 +23,10 @@ const routes: Routes = [
             {
                 path: 'articoli',
                 component: ArticoliComponent
+            },
+            {
+                path: 'magazzino',
+                component: MagazzinoComponent
             }
         ],
     },

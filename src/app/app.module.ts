@@ -22,6 +22,9 @@ import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {AuthInterceptor} from "./_interceptors/auth.interceptor";
 import { MdXlComponent } from './components/modals-templates/md-xl/md-xl.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import {PagesModule} from "./pages/pages.module";
+import { SettingsComponent } from './components/modals/settings/settings.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +39,8 @@ import { MdXlComponent } from './components/modals-templates/md-xl/md-xl.compone
         ConfirmEmailComponent,
         CheckMailsComponent,
         NavbarComponent,
-        MdXlComponent
+        MdXlComponent,
+        SettingsComponent
     ],
     imports: [
         BrowserModule,

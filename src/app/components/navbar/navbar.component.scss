@@ -13,9 +13,6 @@
   padding: 0px;
   margin: 10px;
 }
-.active {
-  color: #fb3740;
-}
 
 .logged-in-as, username {
   text-align: right;
@@ -23,4 +20,12 @@
 
 .username {
   font-weight: 800;
+}
+
+.user-group{
+  cursor: pointer;
+}
+
+.user-group:active {
+  color: #0a2463;
 }
