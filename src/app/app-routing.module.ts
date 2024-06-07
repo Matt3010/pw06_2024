@@ -8,7 +8,9 @@ import {IsVerifiedComponent} from "./pages/auth/verified/ko/is-verified.componen
 import {ConfirmEmailComponent} from "./pages/auth/verified/confirm-email/confirm-email.component";
 import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails.component";
 import {AuthGuard} from "./_guards/auth.guard";
-import {ResetPasswordComponent} from "./pages/auth/reset-password/reset-password.component";
+import {ResetPasswordComponent} from "./pages/auth/password-steps/reset-password/reset-password.component";
+import { SendMailPasswordComponent } from "./pages/auth/password-steps/send-mail-password/send-mail-password.component";
+import { EmailSentComponent } from "./pages/auth/password-steps/email-sent/email-sent.component";
 
 const routes: Routes = [
     {
@@ -54,8 +56,16 @@ const routes: Routes = [
                 component: OtpComponent
             },
             {
+                path: 'send-mail-password',
+                component: SendMailPasswordComponent
+            },
+            {
                 path: 'reset-password',
                 component: ResetPasswordComponent
+            },
+            {
+                path: 'email-sent',
+                component: EmailSentComponent
             },
             {
                 path: 'verified',

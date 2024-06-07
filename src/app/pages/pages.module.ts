@@ -9,7 +9,7 @@ import {CommonModule} from "@angular/common";
     declarations: [
         DashboardComponent,
         FornitoriComponent,
-        ArticoliComponent,
+        ArticoliComponent
     ],
     imports: [
         PagesRoutingModule,
