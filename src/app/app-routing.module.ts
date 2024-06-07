@@ -8,6 +8,7 @@ import {IsVerifiedComponent} from "./pages/auth/verified/ko/is-verified.componen
 import {ConfirmEmailComponent} from "./pages/auth/verified/confirm-email/confirm-email.component";
 import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails.component";
 import {AuthGuard} from "./_guards/auth.guard";
+import {ResetPasswordComponent} from "./pages/auth/reset-password/reset-password.component";
 
 const routes: Routes = [
     {
@@ -53,6 +54,10 @@ const routes: Routes = [
                 component: OtpComponent
             },
             {
+                path: 'reset-password',
+                component: ResetPasswordComponent
+            },
+            {
                 path: 'verified',
                 children: [
                     {
@@ -68,7 +73,7 @@ const routes: Routes = [
                         component: CheckMailsComponent
                     }
                 ],
-            },
+            }
         ],
     }
 ];

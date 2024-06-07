@@ -22,6 +22,7 @@ import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {AuthInterceptor} from "./_interceptors/auth.interceptor";
 import { MdXlComponent } from './components/modals-templates/md-xl/md-xl.component';
+import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { MdXlComponent } from './components/modals-templates/md-xl/md-xl.compone
         ConfirmEmailComponent,
         CheckMailsComponent,
         NavbarComponent,
-        MdXlComponent
+        MdXlComponent,
+        ResetPasswordComponent
     ],
     imports: [
         BrowserModule,
