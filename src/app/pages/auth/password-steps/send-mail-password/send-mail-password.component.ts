@@ -19,7 +19,7 @@ export class SendMailPasswordComponent {
         email: this.yourEmail.value
       })
     } else {
-      console.error('Banane!')
+      console.error('Email non inviata!')
     }
   }
 }

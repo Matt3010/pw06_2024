@@ -1,14 +1,18 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { confirmPasswordValidator } from "../../../../_utils/custom-validators/password-match.validator";
 import { PasswordService } from "../../../../_services/password.service";
+import { ActivatedRoute } from "@angular/router";
+import { TokenService } from "../../../../_services/token.service";
 
 @Component({
   selector: "app-reset-password",
   templateUrl: "./reset-password.component.html",
   styleUrls: ["./reset-password.component.scss"],
 })
-export class ResetPasswordComponent {
+export class ResetPasswordComponent implements OnInit {
+
+  token: string | null = null;
 
   errors: string[] = [];
 
@@ -18,10 +22,25 @@ export class ResetPasswordComponent {
       confirm_password: new FormControl("", [Validators.required]),
     }, { validators: [confirmPasswordValidator]});
 
-  constructor(private pswService: PasswordService) {
+  constructor(
+    private pswService: PasswordService,
+    private activeRoute: ActivatedRoute,
+    private tokenService: TokenService
+  ) {
     this.resetForm.valueChanges.subscribe((res: any) => {
       this.getErrors();
     });
+  }
+
+  ngOnInit(): void {
+    this.activeRoute.queryParams.subscribe(params => {
+      this.token = params['token'];
+      if(this.token) {
+        this.tokenService.saveToken(this.token);
+      } else {
+        console.error('Sbagliato!')
+      }
+    })
   }
 
   resetPassword() {
