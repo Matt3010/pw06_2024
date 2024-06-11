@@ -19,12 +19,11 @@ import {MessageBoxComponent} from "./components/message-box/message-box.componen
 import {IsVerifiedComponent} from "./pages/auth/verified/ko/is-verified.component";
 import {ConfirmEmailComponent} from "./pages/auth/verified/confirm-email/confirm-email.component";
 import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails.component";
-import { NavbarComponent } from './components/navbar/navbar.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
 import {AuthInterceptor} from "./_interceptors/auth.interceptor";
-import { MdXlComponent } from './components/modals-templates/md-xl/md-xl.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import {PagesModule} from "./pages/pages.module";
-import { SettingsComponent } from './components/modals/settings/settings.component';
+import {MdXlComponent} from './components/modals-templates/md-xl/md-xl.component';
+import {SettingsComponent} from './components/modals/settings/settings.component';
+import {MdMdComponent} from './components/modals-templates/md-md/md-md.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +39,8 @@ import { SettingsComponent } from './components/modals/settings/settings.compone
         CheckMailsComponent,
         NavbarComponent,
         MdXlComponent,
-        SettingsComponent
+        SettingsComponent,
+        MdMdComponent
     ],
     imports: [
         BrowserModule,

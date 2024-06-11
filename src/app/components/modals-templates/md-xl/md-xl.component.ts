@@ -16,7 +16,7 @@ export class MdXlComponent  extends ModalTemplateAbstract {
 
   constructor(
       private componentFactoryResolver: ComponentFactoryResolver,
-      private injectorService: ComponentInjectorService
+      private injectorService: ComponentInjectorService,
   ) {
     super();
   }

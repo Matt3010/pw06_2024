@@ -25,11 +25,11 @@ export class DashboardComponent {
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
       hash = hash & hash;
     }
-    return `hsl(${(hash % 360)}, ${saturation}%, ${lightness}%)`;
+    return `hsl(${(hash % 353)}, ${saturation}%, ${lightness}%)`;
   }
 
 
-  openModal(component: any, title: string, url: string) {
+  openModal(component: any, title: string, url: string | null) {
     this.injectorService.createComponent(MdXlComponent, {component: component, title: title, goTo: url});
   }
 

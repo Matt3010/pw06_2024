@@ -1,0 +1,44 @@
+<div class="row flex-column m-2" style="gap: 8px;">
+
+    <div class="d-flex" style="gap: 10px">
+        <button (click)="orderService.alignFromAmazon()" class="col-auto outer btn d-flex justify-content-center align-items-center" style="width: fit-content">
+            <img width="15px" src="assets/project/download.svg" alt="download">
+        </button>
+        <button (click)="orderService.fetchOrders()" class="col-auto outer btn d-flex justify-content-center align-items-center" style="width: fit-content">
+            <img width="15px" src="assets/project/refresh.svg" alt="refresh">
+        </button>
+    </div>
+
+    <div class="col m-0 p-0 outer">
+        <p-table
+                [paginator]="true"
+                [rowsPerPageOptions]="[10, 25, 50, 100]"
+                [rows]="10"
+                styleClass="p-datatable-striped" [value]="(orders$ | async)!">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Is Prime</th>
+                    <th>Order type</th>
+                    <th>Order status</th>
+                    <th>Amazon order id</th>
+                    <th>Purchase date</th>
+                    <th>Buyer email</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-order>
+                <tr>
+                    <td>
+                        <img width="35px" *ngIf="order.isPrime" src="assets/project/prime.svg" alt="isPrime">
+                        <small *ngIf="!order.isPrime">-</small>
+                    </td>
+                    <td>{{ order.OrderType }}</td>
+                    <td>{{ order.OrderStatus }}</td>
+                    <td>{{ order.AmazonOrderId }}</td>
+                    <td>{{ order.PurchaseDate | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td>{{ order.BuyerInfo.BuyerEmail }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+</div>

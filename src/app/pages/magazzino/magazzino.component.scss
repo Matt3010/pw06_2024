@@ -1,54 +1,56 @@
-.magazzino {
-  padding: 15px !important;
-  border-radius: 4px !important;
+.outer {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border-radius: 20px;
 }
 
-
 ::ng-deep {
-  .p-datatable .p-datatable-thead > tr > th:nth-child(1):not(.not) {
-    border-radius: 4px 0 0 0 !important;
-  }
+  .form-submit-button {
 
-  .p-datatable .p-datatable-thead > tr > th:nth-last-child(1) {
-    border-radius: 0 4px 0 0 !important;
-  }
+    &:disabled {
+      opacity: 0.3;
+    }
 
-  .p-datatable .p-sortable-column {
-    font-size: 14px !important;
-  }
+    &-danger {
+      background-color: #630a0a;
+      border: solid rgb(138, 0, 0) 0.5px;
+    }
 
-  .p-datatable .p-datatable-tbody > tr > td {
-    text-align: left;
-    border: 1px solid #dee2e6;
-    border-width: 0 0 1px 0;
-    padding: 0.5rem 1rem;
+    background-color: #0a2463;
+    border: solid rgb(0, 19, 44) 0.5px;
+    border-radius: 6px;
+    font-weight: 600;
     font-size: 14px;
-  }
+    padding: 5px 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    color: white;
 
-  .p-paginator {
-    justify-content: end !important;
-  }
-
-  .p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last {
-    background-color: rgba(10, 36, 99, 0.42);
-    color: #000000;
-    border-radius: 50px;
-    margin: 10px;
-    transform: scale(0.8);
-  }
-
-  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-    background-color: transparent;
-  }
-
-  .button {
-    padding: 5px;
-    cursor: pointer;
     &:hover {
-      background-color: #e5e5e5;
-      padding: 5px;
-      border-radius: 4px;
+      filter: opacity(0.8);
+      transition: all 0.2s;
+    }
+
+    &:not(:hover) {
+      filter: opacity(1);
+      transition: all 0.2s;
     }
   }
 
+
+  input {
+    font-size: 14px;
+  }
+}
+
+
+.mag {
+  animation: fade 0.2s linear;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

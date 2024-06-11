@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {AuthService} from "../../_services/auth.service";
-import {MdXlComponent} from "../modals-templates/md-xl/md-xl.component";
 import {ComponentInjectorService} from "../../_utils/component-injector.service";
 import {MdSmComponent} from "../modals-templates/md-sm/md-sm.component";
 import {SettingsComponent} from "../modals/settings/settings.component";
@@ -14,6 +13,7 @@ export class NavbarComponent {
 
     currentUser$ = this.authService.currentUser$;
     shouldSeeDropDown: boolean = false;
+    window = window;
 
     constructor(
         private authService: AuthService,

@@ -5,9 +5,9 @@
   width: 400px;
   height: auto;
   max-height: 400px;
-  overflow: auto;
   animation: opacity 0.1s ease-in;
   background-color: #ffffff;
+  overflow: auto;
 
   &-top-header {
     position: sticky;

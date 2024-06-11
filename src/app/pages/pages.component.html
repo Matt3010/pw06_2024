@@ -1,8 +1,8 @@
-<div class="row m-0 p-0 page vh-100 flex-column flex-nowrap overflow-hidden">
-    <div class="col-auto m-0 p-0 position-sticky" style="top: 0; z-index: 20">
+<div class="row m-0 p-0 page flex-column flex-nowrap">
+    <div class="col-auto m-0 p-0 position-sticky overflow-hidden" style="top: 0; z-index: 20">
         <app-navbar></app-navbar>
     </div>
-    <div class="col m-0 p-0 h-100 overflow-auto overflow-x-hidden">
+    <div class="col m-0 p-0 h-100">
         <router-outlet></router-outlet>
     </div>
 </div>
@@ -10,5 +10,6 @@
 
 <div class="bg-image-container" id="bg-image-container">
     <img class="golden_img" src="assets/project/cloud.jpeg" alt="bg-image">
-    <div class="opacity-overlay"></div>
+    <div [style.background-color]="router.url.includes('dashboard') ? 'rgba(36, 123, 159, 0.73)': null"
+         class="opacity-overlay"></div>
 </div>

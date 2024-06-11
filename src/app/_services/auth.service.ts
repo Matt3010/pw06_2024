@@ -30,7 +30,7 @@ export class AuthService {
         private router: Router,
         private toastrService: ToastrService,
         private tokenService: TokenService,
-    ) {
+     ) {
         this.apiUrl = environment.api_url;
         if(!this.currentUser$.value) {
             this.me();

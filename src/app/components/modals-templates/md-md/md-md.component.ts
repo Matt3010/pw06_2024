@@ -3,14 +3,14 @@ import {ModalTemplateAbstract} from "../modal.template.abstract";
 import {ComponentInjectorService} from "../../../_utils/component-injector.service";
 
 @Component({
-    selector: 'app-md-sm',
-    templateUrl: './md-sm.component.html',
-    styleUrls: ['./md-sm.component.scss']
+    selector: 'app-md-md',
+    templateUrl: './md-md.component.html',
+    styleUrls: ['./md-md.component.scss']
 })
-export class MdSmComponent extends ModalTemplateAbstract {
+export class MdMdComponent extends ModalTemplateAbstract {
 
     @Input() component!: any;
-    @Input() title: string | null = null;
+    @Input() title: string | null = 'No title';
     @Input() ref!: any;
     @Input() options: any;
     @ViewChild('componentView', {read: ViewContainerRef, static: true}) componentView!: ViewContainerRef;
