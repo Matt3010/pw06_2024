@@ -32,7 +32,7 @@ export class AuthService {
         private tokenService: TokenService,
     ) {
         this.apiUrl = environment.api_url;
-        if(!this.currentUser$.value && !router.url.includes('verified')) {
+        if(!this.currentUser$.value && !router.url.includes('verified') && !router.url.includes('reset-password')) {
             this.me();
         }
     }
