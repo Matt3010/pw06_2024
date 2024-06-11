@@ -1,5 +1,6 @@
 import {FornitoriComponent} from "../fornitori/fornitori.component";
 import {ArticoliComponent} from "../articoli/articoli.component";
+import {MagazzinoComponent} from "../magazzino/magazzino.component";
 
 export const pages = [
     {
@@ -13,7 +14,12 @@ export const pages = [
         'img': 'https://www.svgrepo.com/show/432402/article.svg',
         'component': ArticoliComponent,
         'url': '/pages/articoli'
-
+    },
+    {
+        'title': 'Magazzino',
+        'img': 'https://www.svgrepo.com/show/352676/warehouse.svg',
+        'component': MagazzinoComponent,
+        'url': '/pages/magazzino'
     },
 
 ];

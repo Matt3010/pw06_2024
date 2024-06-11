@@ -1,11 +1,13 @@
 <div class="container h-100 mt-4">
 
     <div class="grid-container">
-        <div (click)="openModal(block.component, block.title, block.url)" [style.background-color]="stringToColor(block.title)" class="grid-item position-relative" *ngFor="let block of blocks">
+        <div (click)="openModal(block.component, block.title, block.url)"
+             [style.background-color]="stringToColor(block.title)" class="grid-item position-relative"
+             *ngFor="let block of blocks">
             <img width="40px" [src]="block.img" alt="preview">
-           <span class="item-title">
+            <small class="item-title">
                {{block.title}}
-           </span>
+           </small>
         </div>
     </div>
 

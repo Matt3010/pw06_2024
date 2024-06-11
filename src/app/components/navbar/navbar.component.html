@@ -7,15 +7,15 @@
         OrderBridge
     </div>
 
-    <div class="col d-flex align-items-center justify-content-end" style="gap: 10px">
+    <div (click)="shouldSeeDropDown = !shouldSeeDropDown; openModal()" class="user-group col-auto d-flex align-items-center justify-content-end"
+         style="gap: 10px">
 
-            <div class="d-flex justify-content-center align-content-end flex-column">
-                <span class="logged-in-as">Logged in as</span>
-                <span class="username">{{(currentUser$ | async)?.fullName}}</span>
-            </div>
+        <div class="d-flex justify-content-center align-content-end flex-column">
+            <span class="logged-in-as">Logged in as</span>
+            <span class="username">{{(currentUser$ | async)?.fullName}}</span>
+        </div>
 
         <img width="45px" src="{{(currentUser$ | async)?.picture}}" alt="user_profile">
-
     </div>
 
 

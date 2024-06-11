@@ -7,30 +7,64 @@
   z-index: 19;
 }
 
+/* Stili per gli elementi della griglia */
 .grid-item {
-
   width: 100%;
   height: 150px;
-
   text-align: center;
   border-radius: 4px;
-
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-
-  &:hover {
-    filter: brightness(0.9);
-    cursor: pointer;
-  }
-
+  border: solid #f1f1f1 0.5px;
 }
 
+.grid-item:hover {
+  filter: brightness(0.9);
+  cursor: pointer;
+  transition: all 0.2s;
+}.grid-item:not(:hover) {
+  filter: brightness(1);
+  cursor: pointer;
+  transition: all 0.2s;
+}
 
 .item-title {
   position: absolute;
   bottom: -30px;
   font-weight: 500;
+}
+
+/* Media queries per il layout responsive */
+
+/* Per schermi grandi (desktop) */
+@media (min-width: 1200px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+/* Per schermi medi (tablet) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+/* Per schermi piccoli (smartphone) */
+@media (max-width: 767px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .grid-item {
+    height: 120px;
+    margin-bottom: 40px;
+  }
+
+  .item-title {
+    bottom: -30px;
+  }
 }

@@ -19,12 +19,13 @@ import {MessageBoxComponent} from "./components/message-box/message-box.componen
 import {IsVerifiedComponent} from "./pages/auth/verified/ko/is-verified.component";
 import {ConfirmEmailComponent} from "./pages/auth/verified/confirm-email/confirm-email.component";
 import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails.component";
-import { NavbarComponent } from './components/navbar/navbar.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
 import {AuthInterceptor} from "./_interceptors/auth.interceptor";
-import { MdXlComponent } from './components/modals-templates/md-xl/md-xl.component';
-import { ResetPasswordComponent } from './pages/auth/password-steps/reset-password/reset-password.component';
-import { SendMailPasswordComponent } from './pages/auth/password-steps/send-mail-password/send-mail-password.component';
-import { EmailSentComponent } from './pages/auth/password-steps/email-sent/email-sent.component';
+import {MdXlComponent} from './components/modals-templates/md-xl/md-xl.component';
+import {ResetPasswordComponent} from './pages/auth/password-steps/reset-password/reset-password.component';
+import {SendMailPasswordComponent} from './pages/auth/password-steps/send-mail-password/send-mail-password.component';
+import {EmailSentComponent} from './pages/auth/password-steps/email-sent/email-sent.component';
+import {SettingsComponent} from './components/modals/settings/settings.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,8 @@ import { EmailSentComponent } from './pages/auth/password-steps/email-sent/email
         ConfirmEmailComponent,
         CheckMailsComponent,
         NavbarComponent,
+        MdXlComponent,
+        SettingsComponent,
         MdXlComponent,
         ResetPasswordComponent,
         SendMailPasswordComponent,
