@@ -1,14 +1,15 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { confirmPasswordValidator } from "../../../../_utils/custom-validators/password-match.validator";
 import { PasswordService } from "../../../../_services/password.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-reset-password",
   templateUrl: "./reset-password.component.html",
   styleUrls: ["./reset-password.component.scss"],
 })
-export class ResetPasswordComponent {
+export class ResetPasswordComponent implements OnInit {
 
   token: string | null = null;
 
@@ -22,15 +23,27 @@ export class ResetPasswordComponent {
 
   constructor(
     private pswService: PasswordService,
+    private route: ActivatedRoute
   ) {
     this.resetForm.valueChanges.subscribe((res: any) => {
       this.getErrors();
     });
   }
 
+  ngOnInit(): void {
+    this.route.params.subscribe(param => {
+      this.token = this.route.snapshot.queryParamMap.get('token');
+    })
+  }
+
   resetPassword() {
     if (this.resetForm.valid) {
-      this.pswService.resetPassword(this.resetForm.value.confirm_password);
+        this.pswService.resetPassword(
+          {
+            token: this.token,
+            newPassword: this.resetForm.value.confirm_password,
+          }
+        );
     } else {
       this.getErrors();
     }
