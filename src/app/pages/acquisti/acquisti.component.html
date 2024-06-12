@@ -1,4 +1,4 @@
-<div class="row mag m-4">
+<div class="row mag m-2">
 
     <div class="col d-flex align-items-center mb-3" *ngIf="router.url.includes('acquisti')" style="gap: 20px;">
         <span class="col fs-1 fw-bold">Purchases</span>
@@ -8,7 +8,7 @@
     <div class="panels d-flex flex-column p-3">
 
         <div class="fw-bold text-center col-auto fs-5 pb-3">
-            Your history
+            Your purchase history
         </div>
 
         <div *ngFor="let purchase of purchases$ | async; let last = last">
@@ -54,7 +54,7 @@
             </p-panel>
 
             <small *ngIf="!last">
-                <hr>
+                <hr class="my-2" style="color:#bbbbbb">
             </small>
         </div>
     </div>
