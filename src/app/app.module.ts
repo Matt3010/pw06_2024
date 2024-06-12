@@ -21,9 +21,12 @@ import {ConfirmEmailComponent} from "./pages/auth/verified/confirm-email/confirm
 import {CheckMailsComponent} from "./pages/auth/verified/check-mails/check-mails.component";
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {AuthInterceptor} from "./_interceptors/auth.interceptor";
-import {MdXlComponent} from './components/modals-templates/md-xl/md-xl.component';
-import {SettingsComponent} from './components/modals/settings/settings.component';
 import {MdMdComponent} from './components/modals-templates/md-md/md-md.component';
+import {MdXlComponent} from './components/modals-templates/md-xl/md-xl.component';
+import {ResetPasswordComponent} from './pages/auth/password-steps/reset-password/reset-password.component';
+import {SendMailPasswordComponent} from './pages/auth/password-steps/send-mail-password/send-mail-password.component';
+import {EmailSentComponent} from './pages/auth/password-steps/email-sent/email-sent.component';
+import {SettingsComponent} from './components/modals/settings/settings.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +44,11 @@ import {MdMdComponent} from './components/modals-templates/md-md/md-md.component
         MdXlComponent,
         SettingsComponent,
         MdMdComponent,
-
+        SettingsComponent,
+        MdXlComponent,
+        ResetPasswordComponent,
+        SendMailPasswordComponent,
+        EmailSentComponent
     ],
     imports: [
         BrowserModule,
