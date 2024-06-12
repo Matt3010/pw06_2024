@@ -23,6 +23,7 @@ export interface Order {
     IsIBA: boolean
     ShippingAddress: ShippingAddress
     BuyerInfo: BuyerInfo
+    OrderItems: any;
 }
 
 export interface ShippingAddress {

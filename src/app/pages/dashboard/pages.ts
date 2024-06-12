@@ -27,6 +27,12 @@ export const pages = [
         'img': 'https://www.svgrepo.com/show/432402/article.svg',
         'component': AcquistiComponent,
         'url': '/pages/acquisti'
+    },
+    {
+        'title': 'Analytics',
+        'img': 'https://www.svgrepo.com/show/376754/analytics.svg',
+        'component': '',
+        'url': '/pages/analytics'
     }
 
 ];
