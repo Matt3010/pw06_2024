@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CategoryService} from "../../../_services/category.service";
 import {ItemService} from "../../../_services/item.service";
-import {Item} from "../../../../@data/item";
+import {Supplier} from "../../../../@data/item";
 import {ComponentInjectorService} from "../../../_utils/component-injector.service";
 
 @Component({
@@ -41,7 +41,7 @@ export class EditItemComponent implements OnInit {
     }
 
     edit() {
-        const updatedItem: Partial<Item> = {
+        const updatedItem: Partial<Supplier> = {
             quantity: this.editForm.controls['quantity'].value,
             title: this.editForm.controls['title'].value,
             categoryId: this.editForm.controls['category'].value.toString()

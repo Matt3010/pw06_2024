@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {ComponentInjectorService} from "../../_utils/component-injector.service";
 import {MdMdComponent} from "../../components/modals-templates/md-md/md-md.component";
 import {EditItemComponent} from "./edit-item/edit-item.component";
-import {Item} from "../../../@data/item";
+import {Supplier} from "../../../@data/item";
 import {CreateItemComponent} from "./create-item/create-item.component";
 import {DeleteItemComponent} from "./delete-item/delete-item.component";
 import {MdSmComponent} from "../../components/modals-templates/md-sm/md-sm.component";
@@ -25,7 +25,7 @@ export class MagazzinoComponent {
     ) {
     }
 
-    delete(item: Item) {
+    delete(item: Supplier) {
         this.injectorService.createComponent(MdSmComponent, {
             component: DeleteItemComponent,
             title: 'Delete item',
@@ -33,7 +33,7 @@ export class MagazzinoComponent {
         })
     }
 
-    update(item: Item) {
+    update(item: Supplier) {
         this.injectorService.createComponent(MdMdComponent, {
             component: EditItemComponent,
             title: 'Edit item',

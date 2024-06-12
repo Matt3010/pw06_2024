@@ -1,6 +1,6 @@
 import {Category} from "./category";
 
-export interface Item {
+export interface Supplier {
     id: string,
     ASIN: string,
     quantity: number,

@@ -3,8 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {FornitoriComponent} from "./fornitori/fornitori.component";
-import {ArticoliComponent} from "./articoli/articoli.component";
 import {MagazzinoComponent} from "./magazzino/magazzino.component";
+import {AcquistiComponent} from "./acquisti/acquisti.component";
 
 
 const routes: Routes = [
@@ -14,15 +14,15 @@ const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                component: DashboardComponent
+                component: DashboardComponent,
             },
             {
                 path: 'fornitori',
-                component: FornitoriComponent
+                component: FornitoriComponent,
             },
             {
-                path: 'articoli',
-                component: ArticoliComponent
+                path: 'acquisti',
+                component: AcquistiComponent,
             },
             {
                 path: 'magazzino',

@@ -1,0 +1,62 @@
+<div class="row mag m-4">
+
+    <div class="col d-flex align-items-center mb-3" *ngIf="router.url.includes('acquisti')" style="gap: 20px;">
+        <span class="col fs-1 fw-bold">Purchases</span>
+    </div>
+
+
+    <div class="panels d-flex flex-column p-3">
+
+        <div class="fw-bold text-center col-auto fs-5 pb-3">
+            Your history
+        </div>
+
+        <div *ngFor="let purchase of purchases$ | async; let last = last">
+            <p-panel class="pb-2"
+                     [header]="'Purchase by ' + (purchase.supplierId)!" [collapsed]="true"
+                     [toggleable]="true">
+
+                <ng-container #purchaseInfo>
+                    <div class="row jus">
+                        <a routerLink="/pages/fornitori" class="col-auto">
+                            <small>Go to suppliers</small>
+                        </a>
+                    </div>
+                </ng-container>
+
+
+                <ng-container #header>
+                    <div class="row p-1 title">
+                        <div class="col-4">
+                            <small>
+                                ASIN
+                            </small>
+                        </div>
+                        <div class="col-4">
+                            <small>
+                                Quantity
+                            </small>
+                        </div>
+                        <div class="col-4">
+                            <small>
+                                Unit price
+                            </small>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container>
+                    <div class="row item" *ngFor="let item of purchase.items">
+                        <div class="col-4">{{item.ASIN}}</div>
+                        <div class="col-4">{{item.quantity}}</div>
+                        <div class="col-4">{{item.unitPrice | currency:'€'}}</div>
+                    </div>
+                </ng-container>
+            </p-panel>
+
+            <small *ngIf="!last">
+                <hr>
+            </small>
+        </div>
+    </div>
+
+</div>

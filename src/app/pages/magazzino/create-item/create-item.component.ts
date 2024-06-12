@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CategoryService} from "../../../_services/category.service";
 import {ItemService} from "../../../_services/item.service";
-import {Item} from "../../../../@data/item";
+import {Supplier} from "../../../../@data/item";
 import {ComponentInjectorService} from "../../../_utils/component-injector.service";
 
 @Component({
@@ -31,7 +31,7 @@ export class CreateItemComponent {
 
     create() {
 
-        const item: Partial<Item> = {
+        const item: Partial<Supplier> = {
             quantity: this.createForm.controls['quantity'].value,
             title: this.createForm.controls['title'].value,
             ASIN: this.createForm.controls['ASIN'].value,

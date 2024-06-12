@@ -40,7 +40,8 @@ import {MdMdComponent} from './components/modals-templates/md-md/md-md.component
         NavbarComponent,
         MdXlComponent,
         SettingsComponent,
-        MdMdComponent
+        MdMdComponent,
+
     ],
     imports: [
         BrowserModule,

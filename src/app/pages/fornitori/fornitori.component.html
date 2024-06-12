@@ -1,0 +1,48 @@
+<div class="row flex-column m-2 mag">
+
+    <div class="col d-flex align-items-center mb-3" *ngIf="router.url.includes('fornitori')" style="gap: 20px;">
+        <span class="col fs-1 fw-bold">Suppliers</span>
+        <img (click)="createAddModal()" width="60px" src="assets/project/add.svg" alt="add" style="cursor:pointer">
+    </div>
+
+
+    <div class="col m-0 p-0 outer">
+        <p-table
+                [paginator]="true"
+                [rowsPerPageOptions]="[10, 25, 50, 100]"
+                [rows]="10"
+                styleClass="p-datatable-striped" [value]="(suppliers$ | async)!">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="id">
+                        Id
+                        <p-sortIcon field="id"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="fornitore">
+                        Fornitore
+                        <p-sortIcon field="fornitore"></p-sortIcon>
+                    </th>
+                    <th *ngIf="router.url.includes('fornitori')">
+                        Actions
+                    </th>
+            </ng-template>
+            <ng-template pTemplate="body" let-supplier>
+                <tr>
+                    <td>
+                        <span>{{supplier.id}}</span>
+                    </td>
+                    <td>
+                        <span>{{supplier.fornitore}}</span>
+                    </td>
+                    <td *ngIf="router.url.includes('fornitori')">
+                        <div class="d-flex" style="gap: 10px">
+                            <img (click)="delete(supplier)" class="button" width="30px" src="assets/project/delete-svgrepo-com.svg" alt="delete">
+                            <img (click)="update(supplier)" class="button" width="30px" src="assets/project/pencil.svg" alt="pencil">
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+</div>
