@@ -1,4 +1,4 @@
-import { HttpClient, HttpStatusCode } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
@@ -28,10 +28,20 @@ export class PasswordService {
   resetPassword(body: any) {
     this.http.post(this.apiUrl + '/reset-password', body).subscribe((res: any) => {
         this.router.navigateByUrl('auth/login');
-        this.toastSrv.success('Password changed successfully!', 'SUCCESS');
+        this.toastSrv.success('Password resetted successfully!', 'SUCCESS');
     }, (err) => {
       if(err) {
-        this.toastSrv.warning(err.error.error, 'FAILED')
+        this.toastSrv.warning(err.error.error, 'FAILED');
+      }
+    })
+  }
+
+  changePassword(body: any) {
+    this.http.patch(this.apiUrl + '/changePassword', body).subscribe((res: any) => {
+      this.toastSrv.success('Password changed successfully!', 'SUCCESS');
+    }, (err) => {
+      if(err) {
+        console.log(err.error.error)
       }
     })
   }

@@ -32,4 +32,12 @@
   &-text {
     font-size: 16px;
   }
+
+  &-change {
+    background-color: rgba(82, 133, 164, 0.13);
+
+    &:hover {
+      background-color: rgba(82, 133, 164, 0.52);
+    }
+  }
 }
