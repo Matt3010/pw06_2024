@@ -67,6 +67,17 @@ export class ChangePasswordComponent {
     if (this.changeForm.invalid) {
       Object.keys(this.changeForm.controls).forEach((field) => {
         const control = this.changeForm.get(field);
+        switch(field) {
+          case 'old_password':
+              field = 'Vecchia password';
+              break;
+          case 'new_password':
+              field = 'Nuova password';
+              break;
+          case 'confirm_password':
+              field = 'Conferma password';
+              break;
+        }
         if (control && control.errors && control.dirty) {
           Object.keys(control.errors).forEach((errorKey) => {
             let errorMessage = "";

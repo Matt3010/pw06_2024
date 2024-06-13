@@ -76,6 +76,17 @@ export class RegisterComponent {
         if (this.registerForm.invalid) {
             Object.keys(this.registerForm.controls).forEach(field => {
                 const control = this.registerForm.get(field);
+                switch(field) {
+                    case 'confirm_password':
+                        field = 'Conferma password';
+                        break;
+                    case 'first_name':
+                        field = 'Nome';
+                        break;
+                    case 'last_name':
+                        field = 'Cognome'
+                        break;
+                }
                 if (control && control.errors && control.dirty) {
                     Object.keys(control.errors).forEach(errorKey => {
                         let errorMessage = '';
