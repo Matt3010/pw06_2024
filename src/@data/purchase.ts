@@ -5,5 +5,5 @@ export interface Purchase {
     invoiceDate: string
     invoiceNumber: string
     items: PurchasedItem[]
-    id: string
+    id: string,
 }

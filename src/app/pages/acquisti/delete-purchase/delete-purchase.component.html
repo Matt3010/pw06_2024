@@ -1,0 +1,12 @@
+<div class="m-2 row m-0 p-0 flex-column" style="gap: 8px;">
+    <div class="col-12 m-0 p-0">
+        <small>Type "Confirm" to delete this item.</small>
+    </div>
+    <div class="col-12 m-0 p-0">
+        <input class="w-100 form-control" [(ngModel)]='userInput' type="text">
+    </div>
+    <div class="col-12 d-flex justify-content-end m-0 p-0">
+        <button (click)="delete()" class="form-submit-button form-submit-button-danger" [disabled]="userInput !== 'Confirm'">Delete</button>
+    </div>
+
+</div>

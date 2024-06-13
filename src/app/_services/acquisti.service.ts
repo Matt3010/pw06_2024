@@ -33,4 +33,36 @@ export class AcquistiService {
                 this.purchases$.next(res);
             })
     }
+
+
+    patchPurchase(body: Purchase) {
+        this.http.put<Purchase>(this.apiUrl + '?id=' + body.id, body).subscribe((res: Purchase) => {
+                if (res) {
+                    const lastValue = this.purchases$.value!;
+                    const found = lastValue?.findIndex((i: Purchase) => i.id === res.id)
+                    if (found !== -1) {
+                        lastValue[found] = res;
+                        this.purchases$.next(lastValue);
+                    }
+                }
+            }
+        )
+    }
+
+
+    deletePurchase(id: string) {
+        const options = {
+            body: [{id: id, all: true, asins: []}]
+        };
+
+        this.http.delete<Purchase>(this.apiUrl, options).subscribe((res: Purchase) => {
+            if (res) {
+                const lastValue = this.purchases$.value!;
+                const filteredItems = lastValue.filter((i: Purchase) => i.id !== res.id);
+                this.purchases$.next(filteredItems);
+            }
+        });
+    }
+
+
 }

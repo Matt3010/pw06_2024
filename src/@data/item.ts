@@ -6,4 +6,5 @@ export interface Supplier {
     quantity: number,
     categoryId: Category | string,
     title: string,
+    fornitore?: string,
 }

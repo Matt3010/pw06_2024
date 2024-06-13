@@ -1,0 +1,36 @@
+   .form-submit-button {
+
+    &:disabled {
+      opacity: 0.3;
+    }
+
+    &-danger {
+      background-color: #630a0a;
+      border: solid rgb(138, 0, 0) 0.5px;
+    }
+
+    background-color: #0a2463;
+    border: solid rgb(0, 19, 44) 0.5px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    color: white;
+
+    &:hover {
+      filter: opacity(0.8);
+      transition: all 0.2s;
+    }
+
+    &:not(:hover) {
+      filter: opacity(1);
+      transition: all 0.2s;
+    }
+  }
+
+
+  input {
+    font-size: 14px;
+  }
+
