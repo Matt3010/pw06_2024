@@ -12,6 +12,8 @@ import {ComponentInjectorService} from "../../../_utils/component-injector.servi
 })
 export class CreateItemComponent {
 
+    errors: string[] = [];
+
     categories$ = this.categoryService.categories$;
 
     createForm: FormGroup = new FormGroup({
@@ -26,6 +28,9 @@ export class CreateItemComponent {
         private itemService: ItemService,
         private injectorService: ComponentInjectorService
     ) {
+        this.createForm.valueChanges.subscribe((res: any) => {
+            this.getErrors();
+        })
     }
 
 
@@ -41,5 +46,35 @@ export class CreateItemComponent {
         this.itemService.createNewItem(item);
         this.injectorService.destroyComponent();
     }
+
+    getErrors() {
+        this.errors = [];
+    
+        if (this.createForm.invalid) {
+          Object.keys(this.createForm.controls).forEach((field) => {
+            const control = this.createForm.get(field);
+            if (control && control.errors && control.dirty) {
+              Object.keys(control.errors).forEach((errorKey) => {
+                let errorMessage = "";
+                switch (errorKey) {
+                  case "required":
+                    errorMessage = `${field} non valido/a`;
+                    break;
+                  case "minlength":
+                    errorMessage = `${field} deve essere maggiore di 0`;
+                    break;
+                  case "pattern":
+                    errorMessage = `${field} deve contenere solo numeri`;
+                    break;
+                  default:
+                    errorMessage = `${field}: errore non specificato ${errorKey}`;
+                    break;
+                }
+                this.errors.push(errorMessage);
+              });
+            }
+          });
+        }
+      }
 
 }
