@@ -27,6 +27,7 @@ import {ResetPasswordComponent} from './pages/auth/password-steps/reset-password
 import {SendMailPasswordComponent} from './pages/auth/password-steps/send-mail-password/send-mail-password.component';
 import {EmailSentComponent} from './pages/auth/password-steps/email-sent/email-sent.component';
 import {SettingsComponent} from './components/modals/settings/settings.component';
+import { ChangePasswordComponent } from './components/modals/change-password/change-password.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import {SettingsComponent} from './components/modals/settings/settings.component
         MdXlComponent,
         ResetPasswordComponent,
         SendMailPasswordComponent,
-        EmailSentComponent
+        EmailSentComponent,
+        ChangePasswordComponent
     ],
     imports: [
         BrowserModule,
