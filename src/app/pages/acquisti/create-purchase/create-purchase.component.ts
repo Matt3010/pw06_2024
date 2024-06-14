@@ -15,10 +15,11 @@ export class CreatePurchaseComponent {
 
     suppliers$ = this.supplierService.suppliers$;
     purchasableItems$ = this.itemService.items$
-    itemSelected: Supplier | null = null;
+    itemSelected: any = null;
     quantity: number = 0;
+    unitPrice: number = 0;
 
-    items: Supplier[] = [];
+    items: any[] = [];
 
     createForm: FormGroup = new FormGroup({
         supplierId: new FormControl('', [Validators.required]),
@@ -30,20 +31,20 @@ export class CreatePurchaseComponent {
         private supplierService: FornitoriService,
         private itemService: ItemService,
         private purchaseService: AcquistiService,
-        private injectorService: ComponentInjectorService
+        private injectorService: ComponentInjectorService,
     ) {
     }
 
     create() {
 
-        const item: Partial<Supplier> = {
-            quantity: this.createForm.controls['quantity'].value,
-            title: this.createForm.controls['title'].value,
-            ASIN: this.createForm.controls['ASIN'].value,
-            categoryId: this.createForm.controls['category'].value.toString()
-        };
+        const body = {
+            supplierId: this.createForm.controls['supplierId'].value,
+            invoiceDate: this.createForm.controls['invoiceDate'].value,
+            invoiceNumber: this.createForm.controls['invoiceNumber'].value,
+            items: this.items,
+        }
 
-        // this.itemService.createNewItem(item);
+        this.purchaseService.createNewPurchase({...body});
         this.injectorService.destroyComponent();
     }
 
@@ -66,6 +67,8 @@ export class CreatePurchaseComponent {
             return;
         }
 
+        this.itemSelected.unitPrice = this.unitPrice;
+
         const index = this.items.findIndex((i: Supplier) => i.title === this.itemSelected!.title);
 
         if (index !== -1) {
@@ -74,6 +77,56 @@ export class CreatePurchaseComponent {
             this.itemSelected.quantity = this.quantity;
             this.items.push(this.itemSelected);
         }
+        this.quantity = 0;
     }
+
+    calculateTotalInvoicePrice(): number {
+        let total: number = 0;
+        this.items.forEach((i: any) => {
+            total += (i.unitPrice * i.quantity)
+        })
+        return total;
+    }
+
+    removeItem(item: any) {
+        this.items = this.items.filter((i: any) => i !== item)
+    }
+
+    modifyOperation(item: any, operator: string = '+', field: string) {
+
+        if (item.quantity <= 1 && operator === '-') {
+            this.removeItem(item);
+        }
+
+        const index = this.items.findIndex((i: any) => i === item);
+
+        if (index !== -1) {
+            const operations: { [key: string]: (a: number, b: number) => number } = {
+                '+': (a, b) => a + b,
+                '-': (a, b) => a - b,
+                '*': (a, b) => a * b,
+                '/': (a, b) => a / b
+            };
+
+            const operation = operations[operator];
+
+            if (operation) {
+                const currentValue = this.items[index][field];
+                const newValue = operation(currentValue, 1);
+                if (newValue >= 0) {
+                    this.items[index][field] = newValue;
+                } else if (operator === '+') {
+                    this.items[index][field] = newValue; // In questo caso, newValue è sempre >= 0
+                } else {
+                    this.items[index][field] = 0;
+                }
+            } else {
+                throw new Error(`Unsupported operator: ${operator}`);
+            }
+        } else {
+            throw new Error('Item not found');
+        }
+    }
+
 
 }

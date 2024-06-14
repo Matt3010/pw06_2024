@@ -6,6 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {TokenService} from "./token.service";
 import {environment} from "../../environments/environment";
 import {Purchase} from "../../@data/purchase";
+import {Supplier} from "../../@data/item";
 
 @Injectable({
     providedIn: 'root'
@@ -62,6 +63,15 @@ export class AcquistiService {
                 this.purchases$.next(filteredItems);
             }
         });
+    }
+
+
+    createNewPurchase(body: any) {
+        this.http.post<Purchase>(this.apiUrl, body).subscribe((res: Purchase) => {
+            const last = this.purchases$.value
+            last?.push(res);
+            this.purchases$.next(last);
+        })
     }
 
 
