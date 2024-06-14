@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, debounceTime, throttleTime} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
@@ -31,13 +31,15 @@ export class AcquistiService {
     fetchPurchases() {
         this.http.get<Purchase[]>(this.apiUrl + '/purchases')
             .subscribe((res: Purchase[]) => {
-                this.purchases$.next(res);
+                this.purchases$.next(res.sort());
             })
     }
 
 
     patchPurchase(body: Purchase) {
-        this.http.put<Purchase>(this.apiUrl + '?id=' + body.id, body).subscribe((res: Purchase) => {
+        this.http.put<Purchase>(this.apiUrl + '?id=' + body.id, body)
+            .pipe(throttleTime(400))
+            .subscribe((res: Purchase) => {
                 if (res) {
                     const lastValue = this.purchases$.value!;
                     const found = lastValue?.findIndex((i: Purchase) => i.id === res.id)
@@ -57,11 +59,7 @@ export class AcquistiService {
         };
 
         this.http.delete<Purchase>(this.apiUrl, options).subscribe((res: Purchase) => {
-            if (res) {
-                const lastValue = this.purchases$.value!;
-                const filteredItems = lastValue.filter((i: Purchase) => i.id !== res.id);
-                this.purchases$.next(filteredItems);
-            }
+            this.fetchPurchases();
         });
     }
 

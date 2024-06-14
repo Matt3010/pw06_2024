@@ -9,8 +9,8 @@
     <div class="col m-0 p-0 outer">
         <p-table
                 [paginator]="true"
-                [rowsPerPageOptions]="[7, 25, 50, 100]"
-                [rows]="7"
+                [rowsPerPageOptions]="[10, 25, 50, 100]"
+                [rows]="10"
                 styleClass="p-datatable-striped" [value]="(purchases$ | async)!">
             <ng-template pTemplate="header">
                 <tr>
@@ -26,7 +26,7 @@
                         Invoice number
                         <p-sortIcon field="invoiceNumber"></p-sortIcon>
                     </th>
-                    <th>Actions</th>
+                    <th *ngIf="router.url.includes('acquisti')">Actions</th>
 
             </ng-template>
             <ng-template pTemplate="body" let-purchase>
@@ -40,7 +40,7 @@
                     <td>
                         <span>{{purchase.invoiceNumber}}</span>
                     </td>
-                    <td>
+                    <td *ngIf="router.url.includes('acquisti')">
                         <div class="d-flex" style="gap: 10px">
                             <img (click)="openModalInvocices(purchase)" style="cursor:pointer" width="17px" src="assets/project/more.svg" alt="Open invoice">
                             <img (click)="delete(purchase)" class="button" width="30px" src="assets/project/delete-svgrepo-com.svg" alt="delete">
