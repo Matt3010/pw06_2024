@@ -6,7 +6,17 @@
     <input type="email" class="form-control my-2" placeholder="Email" formControlName="email"/>
   </div>
   <div class="col p-0">
-    <input type="password" class="form-control my-2" placeholder="Password" formControlName="password"/>
+    <div class="input-group">
+      <input type="{{showPassword ? 'text' : 'password'}}" class="form-control form-control-password my-2" placeholder="Password" formControlName="password"/>
+      <div class="input-group-prepend d-flex align-items-center justify-content-center my-2">
+        <span class="input-group-text"
+              (mousedown)="toggleShowPassword(true)"
+              (mouseup)="toggleShowPassword(false)"
+              role="button">
+          <img class="show-password" src="assets/project/eye.svg" alt="showPsw">
+        </span>
+      </div>
+    </div>
   </div>
   <div class="col p-0 text-end">
     <a routerLink="/auth/send-mail-password" class="my-2">Forgot your password?</a>
