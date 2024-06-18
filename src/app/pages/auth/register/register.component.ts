@@ -62,10 +62,10 @@ export class RegisterComponent {
                 let errorMessage = '';
                 switch (errorKey) {
                     case 'PasswordNoMatch':
-                        errorMessage = `Le password non corrispondono`;
+                        errorMessage = `Passwords don't match`;
                         break;
                     default:
-                        errorMessage = `Errore del form non specificato: ${errorKey}`;
+                        errorMessage = `Unknown error: ${errorKey}`;
                         break;
                 }
                 this.errors.push(errorMessage);
@@ -78,13 +78,13 @@ export class RegisterComponent {
                 const control = this.registerForm.get(field);
                 switch(field) {
                     case 'confirm_password':
-                        field = 'Conferma password';
+                        field = 'Confirm password';
                         break;
                     case 'first_name':
-                        field = 'Nome';
+                        field = 'Name';
                         break;
                     case 'last_name':
-                        field = 'Cognome'
+                        field = 'Surnama'
                         break;
                 }
                 if (control && control.errors && control.dirty) {
@@ -92,23 +92,23 @@ export class RegisterComponent {
                         let errorMessage = '';
                         switch (errorKey) {
                             case 'required':
-                                errorMessage = `${field} non valido/a`;
+                                errorMessage = `Invalid ${field}`;
                                 break;
                             case 'minlength':
-                                errorMessage = `${field} deve avere almeno ${control.errors![errorKey].requiredLength} caratteri`;
+                                errorMessage = `${field} must be at least ${control.errors![errorKey].requiredLength} characters long`;
                                 break;
                             case 'maxlength':
-                                errorMessage = `${field} non può superare ${control.errors![errorKey].requiredLength} caratteri`;
+                                errorMessage = `${field} can't be longer than ${control.errors![errorKey].requiredLength} characters`;
                                 break;
                             case 'email':
-                                errorMessage = `Inserire una mail valida`;
+                                errorMessage = `Insert a valid email`;
                                 break;
                             case 'pattern':
-                                errorMessage = `La password non rispetta i requisiti minimi`;
+                                errorMessage = `Password doesn't satisfy minimum requirements`;
                                 break;
                             // Aggiungi qui altri casi per gestire altri tipi di errori
                             default:
-                                errorMessage = `${field}: errore non specificato ${errorKey}`;
+                                errorMessage = `${field}: unknown error: ${errorKey}`;
                                 break;
                         }
                         this.errors.push(errorMessage);
