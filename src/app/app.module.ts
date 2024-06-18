@@ -14,7 +14,7 @@ import {LoginComponent} from "./pages/auth/login/login.component";
 import {RegisterComponent} from "./pages/auth/register/register.component";
 import {OtpComponent} from "./pages/auth/otp/otp.component";
 import {NgHcaptchaModule} from "ng-hcaptcha";
-import {NgxOtpInputModule} from "ngx-otp-input";
+import { NgOtpInputModule } from 'ng-otp-input';
 import {MessageBoxComponent} from "./components/message-box/message-box.component";
 import {IsVerifiedComponent} from "./pages/auth/verified/ko/is-verified.component";
 import {ConfirmEmailComponent} from "./pages/auth/verified/confirm-email/confirm-email.component";
@@ -64,13 +64,13 @@ import {PanelModule} from "primeng/panel";
         ReactiveFormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
+        NgOtpInputModule,
         ToastrModule.forRoot(),
         TooltipModule.forRoot(),
         NgHcaptchaModule.forRoot({
             siteKey: '1af6130c-b0ac-4bf3-bb20-7d4b902e36a1',
             languageCode: 'it'
         }),
-        NgxOtpInputModule,
         PanelModule,
     ],
     providers: [

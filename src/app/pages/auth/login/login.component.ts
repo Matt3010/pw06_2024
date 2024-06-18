@@ -10,13 +10,13 @@ import {AuthService} from "../../../_services/auth.service";
 export class LoginComponent implements OnInit {
 
   constructor(
-      private authService: AuthService
-  ) {
-    
-  }
+    private authService: AuthService
+  ) {}
 
   loginForm!: FormGroup;
   errors: string[] = [];
+
+  showPassword: boolean = false;
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -40,6 +40,10 @@ export class LoginComponent implements OnInit {
     } else {
       this.getErrors();
     }
+  }
+
+  toggleShowPassword(showPassword: boolean) {
+    this.showPassword = showPassword;
   }
 
   getErrors() {
