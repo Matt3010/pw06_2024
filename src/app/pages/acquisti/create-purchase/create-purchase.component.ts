@@ -63,7 +63,7 @@ export class CreatePurchaseComponent {
     calc() {
         // Verifica che itemSelected e quantity siano definiti
         if (!this.itemSelected || this.quantity == null) {
-            console.error("itemSelected o quantity non definiti");
+            console.error("Undefined itemSelected / quantity");
             return;
         }
 

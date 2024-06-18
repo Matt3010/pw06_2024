@@ -69,10 +69,10 @@ export class EditItemComponent implements OnInit {
             let errorMessage = "";
             switch (errorKey) {
               case "required":
-                errorMessage = `${field} non valido/a`;
+                errorMessage = `Invalid ${field}`;
                 break;
               default:
-                errorMessage = `${field}: errore non specificato ${errorKey}`;
+                errorMessage = `${field}: unknown error: ${errorKey}`;
                 break;
             }
             this.errors.push(errorMessage);

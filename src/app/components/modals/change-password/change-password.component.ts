@@ -54,10 +54,10 @@ export class ChangePasswordComponent {
         let errorMessage = "";
         switch (errorKey) {
           case "PasswordNoMatch":
-            errorMessage = `Le password non corrispondono`;
+            errorMessage = `Passwords don't match`;
             break;
           default:
-            errorMessage = `Errore del form non specificato: ${errorKey}`;
+            errorMessage = `Unknown form error: ${errorKey}`;
             break;
         }
         this.errors.push(errorMessage);
@@ -69,13 +69,13 @@ export class ChangePasswordComponent {
         const control = this.changeForm.get(field);
         switch(field) {
           case 'old_password':
-              field = 'Vecchia password';
+              field = 'Old password';
               break;
           case 'new_password':
-              field = 'Nuova password';
+              field = 'New password';
               break;
           case 'confirm_password':
-              field = 'Conferma password';
+              field = 'Confirm password';
               break;
         }
         if (control && control.errors && control.dirty) {
@@ -83,24 +83,24 @@ export class ChangePasswordComponent {
             let errorMessage = "";
             switch (errorKey) {
               case "required":
-                errorMessage = `${field} non valido/a`;
+                errorMessage = `Invalid ${field}`;
                 break;
               case "minlength":
-                errorMessage = `${field} deve avere almeno ${
+                errorMessage = `${field} must be at least ${
                   control.errors![errorKey].requiredLength
-                } caratteri`;
+                } characters long`;
                 break;
               case "maxlength":
-                errorMessage = `${field} non può superare ${
+                errorMessage = `${field} can't be more than ${
                   control.errors![errorKey].requiredLength
-                } caratteri`;
+                } characters long`;
                 break;
               case "pattern":
-                errorMessage = `La password non rispetta i requisiti minimi`;
+                errorMessage = `Password doesn't satisfy minimum requirements`;
                 break;
               // Aggiungi qui altri casi per gestire altri tipi di errori
               default:
-                errorMessage = `${field}: errore non specificato ${errorKey}`;
+                errorMessage = `${field}: unknown error: ${errorKey}`;
                 break;
             }
             this.errors.push(errorMessage);
