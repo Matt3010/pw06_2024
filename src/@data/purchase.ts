@@ -7,3 +7,11 @@ export interface Purchase {
     items: PurchasedItem[]
     id: string,
 }
+
+export interface Purchase {
+    supplierId: string
+    invoiceDate: string
+    invoiceNumber: string
+    items: PurchasedItem[]
+    id: string,
+}

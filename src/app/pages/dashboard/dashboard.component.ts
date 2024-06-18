@@ -27,7 +27,7 @@ export class DashboardComponent {
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
       hash = hash & hash;
     }
-    return `#efdbdc`;
+    return `hsl(${(hash % 345)}, ${saturation}%, ${lightness}%)`;
   }
 
 

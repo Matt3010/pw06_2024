@@ -65,13 +65,12 @@ export class InvoiceDetailsComponent {
 
         console.log(this.options)
 
-        this.purchaseService.patchPurchase(this.options.item);
+        this.purchaseService.patchPurchase({...this.options.item, supplierId: this.options.item.supplierId.id});
     }
 
     removeItem(item: any) {
         this.options.item.items = this.options.item.items.filter((i: any) => i !== item);
-        this.purchaseService.patchPurchase(this.options.item);
-
+        this.purchaseService.patchPurchase({...this.options.item, supplierId: this.options.item.supplierId.id});
     }
 
 
