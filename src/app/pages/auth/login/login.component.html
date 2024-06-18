@@ -14,7 +14,7 @@
   <div class="col p-0">
     <button type="submit" class="form-submit-button w-100 my-2" [disabled]="loginForm.invalid">Login</button>
   </div>
-  <div class="col d-flex justify-content-center p-0 my-2">
+  <div class="col d-flex justify-content-center p-0 mt-2">
     <ng-hcaptcha formControlName="captcha"></ng-hcaptcha>
   </div>
   <div class="col position-relative error-popup d-flex align-items-center" *ngIf="errors.length > 0">
