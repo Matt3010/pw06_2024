@@ -5,5 +5,13 @@ export interface Purchase {
     invoiceDate: string
     invoiceNumber: string
     items: PurchasedItem[]
-    id: string
+    id: string,
+}
+
+export interface Purchase {
+    supplierId: string
+    invoiceDate: string
+    invoiceNumber: string
+    items: PurchasedItem[]
+    id: string,
 }

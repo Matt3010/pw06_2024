@@ -16,6 +16,9 @@ import {DeleteSupplierComponent} from './fornitori/delete-supplier/delete-suppli
 import { AcquistiComponent } from './acquisti/acquisti.component';
 import {TreeTableModule} from "primeng/treetable";
 import {PanelModule} from "primeng/panel";
+import { EditPurchaseComponent } from './acquisti/edit-purchase/edit-purchase.component';
+import { DeletePurchaseComponent } from './acquisti/delete-purchase/delete-purchase.component';
+import { CreatePurchaseComponent } from './acquisti/create-purchase/create-purchase.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +33,9 @@ import {PanelModule} from "primeng/panel";
         EditSupplierComponent,
         DeleteSupplierComponent,
         AcquistiComponent,
+        EditPurchaseComponent,
+        DeletePurchaseComponent,
+        CreatePurchaseComponent,
     ],
     imports: [
         PagesRoutingModule,

@@ -1,62 +1,55 @@
-<div class="row mag m-2">
+<div class="row flex-column m-2 mag">
 
     <div class="col d-flex align-items-center mb-3" *ngIf="router.url.includes('acquisti')" style="gap: 20px;">
-        <span class="col fs-1 fw-bold">Purchases</span>
+        <span class="col fs-1 fw-bold">Acquisti</span>
+        <img (click)="createAddModal()" width="60px" src="assets/project/add.svg" alt="add" style="cursor:pointer">
     </div>
 
 
-    <div class="panels d-flex flex-column p-3">
+    <div class="col m-0 p-0 outer">
+        <p-table
+                [paginator]="true"
+                [rowsPerPageOptions]="[10, 25, 50, 100]"
+                [rows]="10"
+                styleClass="p-datatable-striped" [value]="(purchases$ | async)!">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="id">
+                        From
+                        <p-sortIcon field="id"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="invoiceDate">
+                        Invoice date
+                        <p-sortIcon field="invoiceDate"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="invoiceNumber">
+                        Invoice number
+                        <p-sortIcon field="invoiceNumber"></p-sortIcon>
+                    </th>
+                    <th *ngIf="router.url.includes('acquisti')">Actions</th>
 
-        <div class="fw-bold text-center col-auto fs-5 pb-3">
-            Your purchase history
-        </div>
-
-        <div *ngFor="let purchase of purchases$ | async; let last = last">
-            <p-panel class="pb-2"
-                     [header]="'Purchase by ' + (purchase.supplierId)!" [collapsed]="true"
-                     [toggleable]="true">
-
-                <ng-container #purchaseInfo>
-                    <div class="row jus">
-                        <a routerLink="/pages/fornitori" class="col-auto">
-                            <small>Go to suppliers</small>
-                        </a>
-                    </div>
-                </ng-container>
-
-
-                <ng-container #header>
-                    <div class="row p-1 title">
-                        <div class="col-4">
-                            <small>
-                                ASIN
-                            </small>
+            </ng-template>
+            <ng-template pTemplate="body" let-purchase>
+                <tr>
+                    <td>
+                        <span>{{purchase.supplierId.fornitore}}</span>
+                    </td>
+                    <td>
+                        <span>{{purchase.invoiceDate | date:'dd-MM-yyyy hh:mm:ss'}}</span>
+                    </td>
+                    <td>
+                        <span>{{purchase.invoiceNumber}}</span>
+                    </td>
+                    <td *ngIf="router.url.includes('acquisti')">
+                        <div class="d-flex" style="gap: 10px">
+                            <img (click)="openModalInvocices(purchase)" style="cursor:pointer" width="17px" src="assets/project/more.svg" alt="Open invoice">
+                            <img (click)="delete(purchase)" class="button" width="30px" src="assets/project/delete-svgrepo-com.svg" alt="delete">
+                            <img (click)="update(purchase)" class="button" width="30px" src="assets/project/pencil.svg" alt="pencil">
                         </div>
-                        <div class="col-4">
-                            <small>
-                                Quantity
-                            </small>
-                        </div>
-                        <div class="col-4">
-                            <small>
-                                Unit price
-                            </small>
-                        </div>
-                    </div>
-                </ng-container>
-                <ng-container>
-                    <div class="row item" *ngFor="let item of purchase.items">
-                        <div class="col-4">{{item.ASIN}}</div>
-                        <div class="col-4">{{item.quantity}}</div>
-                        <div class="col-4">{{item.unitPrice | currency:'€'}}</div>
-                    </div>
-                </ng-container>
-            </p-panel>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
 
-            <small *ngIf="!last">
-                <hr class="my-2" style="color:#bbbbbb">
-            </small>
-        </div>
     </div>
-
 </div>

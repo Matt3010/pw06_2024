@@ -1,0 +1,38 @@
+<div class="m-1 entry entry-change">
+         <div class="row p-1 title">
+            <div class="col-4">
+                <small>
+                    ASIN
+                </small>
+            </div>
+            <div class="col-4">
+                <small>
+                    Quantity
+                </small>
+            </div>
+            <div class="col-4">
+                <small>
+                    Unit price
+                </small>
+            </div>
+        </div>
+         <div class="row item" *ngFor="let item of options.item.items">
+            <div class="col-4">{{item.ASIN}}</div>
+            <div class="col-4">{{item.quantity}} <img (click)="modifyOperation(item, '+', 'quantity')" width="20px" src="assets/project/add.svg" alt="add"> <img width="20px" (click)="modifyOperation(item, '-', 'quantity')" src="assets/project/remove.svg" alt="add"></div>
+            <div class="col-4">{{item.unitPrice | currency:'€'}}</div>
+        </div>
+    <hr class="mx-2">
+
+    <div class="row item m-1 p-1">
+        <div  class="col-4">
+        </div>
+        <div  class="col-4 text-truncate d-inline-block" style="max-width: 600px">
+        </div>
+        <div  class="col-4 text-truncate d-inline-block">
+            Total: {{calculateTotalInvoicePrice() | currency: '€'}}
+        </div>
+    </div>
+
+
+</div>
+

@@ -2,9 +2,9 @@
 
     <div class="card-top-header d-flex p-2">
         <div class="col">
-            <span class="ps-2 modal-title text-truncate">{{title}}</span>
+            <span class="modal-title text-truncate">{{title}}</span>
         </div>
-        <div class="col-auto d-flex">
+        <div class="col-auto d-flex" style="gap: 8px">
             <img (click)="close()" *ngIf="goTo" [routerLink]="goTo" class="expand" width="15px" src="assets/project/expand.svg" alt="expand">
             <img (click)="close()" class="close" width="20px" src="assets/project/close.svg" alt="close">
         </div>

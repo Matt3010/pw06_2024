@@ -27,7 +27,10 @@ import {ResetPasswordComponent} from './pages/auth/password-steps/reset-password
 import {SendMailPasswordComponent} from './pages/auth/password-steps/send-mail-password/send-mail-password.component';
 import {EmailSentComponent} from './pages/auth/password-steps/email-sent/email-sent.component';
 import {SettingsComponent} from './components/modals/settings/settings.component';
-import { ChangePasswordComponent } from './components/modals/change-password/change-password.component';
+import {ChangePasswordComponent} from './components/modals/change-password/change-password.component';
+import {MdLgComponent} from "./components/modals-templates/md-lg/md-lg.component";
+import { InvoiceDetailsComponent } from './components/modals/invoice-details/invoice-details.component';
+import {PanelModule} from "primeng/panel";
 
 @NgModule({
     declarations: [
@@ -50,7 +53,9 @@ import { ChangePasswordComponent } from './components/modals/change-password/cha
         ResetPasswordComponent,
         SendMailPasswordComponent,
         EmailSentComponent,
-        ChangePasswordComponent
+        ChangePasswordComponent,
+        MdLgComponent,
+        InvoiceDetailsComponent
     ],
     imports: [
         BrowserModule,
@@ -66,6 +71,7 @@ import { ChangePasswordComponent } from './components/modals/change-password/cha
             languageCode: 'it'
         }),
         NgxOtpInputModule,
+        PanelModule,
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
