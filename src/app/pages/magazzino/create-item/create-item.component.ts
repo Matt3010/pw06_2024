@@ -58,16 +58,16 @@ export class CreateItemComponent {
                 let errorMessage = "";
                 switch (errorKey) {
                   case "required":
-                    errorMessage = `${field} non valido/a`;
+                    errorMessage = `Invalid ${field}`;
                     break;
                   case "minlength":
-                    errorMessage = `${field} deve essere maggiore di 0`;
+                    errorMessage = `${field} must be more than 0`;
                     break;
                   case "pattern":
-                    errorMessage = `${field} deve contenere solo numeri`;
+                    errorMessage = `${field} must contain only numbers`;
                     break;
                   default:
-                    errorMessage = `${field}: errore non specificato ${errorKey}`;
+                    errorMessage = `${field}: unknown error: ${errorKey}`;
                     break;
                 }
                 this.errors.push(errorMessage);

@@ -14,6 +14,8 @@ import {Purchase} from "../../../../@data/purchase";
 })
 export class EditPurchaseComponent implements OnInit {
 
+    errors: string[] = [];
+
     @Input() options: any;
     suppliers$ = this.supplierService.suppliers$;
 
@@ -23,6 +25,9 @@ export class EditPurchaseComponent implements OnInit {
         private injectorService: ComponentInjectorService,
         private supplierService: FornitoriService
     ) {
+        this.editForm.valueChanges.subscribe((res: any) => {
+            this.getErrors();
+        })
     }
 
     editForm: FormGroup = new FormGroup({
@@ -62,5 +67,35 @@ export class EditPurchaseComponent implements OnInit {
         this.injectorService.destroyComponent();
     }
 
-
+    getErrors() {
+        this.errors = [];
+    
+        if (this.editForm.invalid) {
+          Object.keys(this.editForm.controls).forEach((field) => {
+            const control = this.editForm.get(field);
+            switch(field) {
+                case 'invoiceDate':
+                    field = 'Invoice date';
+                    break;
+                case 'invoiceNumber':
+                    field = 'Invoice number';
+                    break;
+              }
+            if (control && control.errors && control.dirty) {
+              Object.keys(control.errors).forEach((errorKey) => {
+                let errorMessage = "";
+                switch (errorKey) {
+                  case "required":
+                      errorMessage = `Invalid ${field}`;
+                      break;
+                  default:
+                    errorMessage = `${field}: unknown error: ${errorKey}`;
+                    break;
+                }
+                this.errors.push(errorMessage);
+              });
+            }
+          });
+        }
+    }
 }
