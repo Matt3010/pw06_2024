@@ -41,8 +41,8 @@
                         <span>{{purchase.invoiceNumber}}</span>
                     </td>
                     <td *ngIf="router.url.includes('acquisti')">
-                        <div class="d-flex" style="gap: 10px">
-                            <img (click)="openModalInvocices(purchase)" style="cursor:pointer" width="17px" src="assets/project/more.svg" alt="Open invoice">
+                        <div class="d-flex justify-content-start" style="gap: 10px">
+                            <img *ngIf="purchase.items.length > 0" (click)="openModalInvocices(purchase)" style="cursor:pointer" width="17px" src="assets/project/more.svg" alt="Open invoice">
                             <img (click)="delete(purchase)" class="button" width="30px" src="assets/project/delete-svgrepo-com.svg" alt="delete">
                             <img (click)="update(purchase)" class="button" width="30px" src="assets/project/pencil.svg" alt="pencil">
                         </div>

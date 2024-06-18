@@ -9,12 +9,41 @@
   background-color: white;
 
   &:hover {
-      filter: brightness(0.9);
+    filter: brightness(0.9);
     transition: all 0.2s;
   }
 
   &:not(:hover) {
-      filter: brightness(1);
+    filter: brightness(1);
+    transition: all 0.2s;
+  }
+}
+
+.details {
+  background-color: #f8f9fa;
+  overflow-y: auto;
+  max-height: 500px
+}
+
+.orderitem {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.close {
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  &:not(:hover) {
+    opacity: 0.5;
+    transform: scale(1);
     transition: all 0.2s;
   }
 }

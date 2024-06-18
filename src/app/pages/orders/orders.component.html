@@ -1,10 +1,14 @@
-<div class="row flex-column m-2" style="gap: 8px;">
+<div class="row m-2" style="gap: 8px;">
 
     <div class="d-flex" style="gap: 10px">
-        <button (click)="orderService.alignFromAmazon()" class="col-auto outer btn d-flex justify-content-center align-items-center" style="width: fit-content">
+        <button (click)="orderService.alignFromAmazon()"
+                class="col-auto outer btn d-flex justify-content-center align-items-center"
+                style="width: fit-content">
             <img width="15px" src="assets/project/download.svg" alt="download">
         </button>
-        <button (click)="orderService.fetchOrders()" class="col-auto outer btn d-flex justify-content-center align-items-center" style="width: fit-content">
+        <button (click)="orderService.fetchOrders()"
+                class="col-auto outer btn d-flex justify-content-center align-items-center"
+                style="width: fit-content">
             <img width="15px" src="assets/project/refresh.svg" alt="refresh">
         </button>
     </div>
@@ -23,6 +27,7 @@
                     <th>Amazon order id</th>
                     <th>Purchase date</th>
                     <th>Buyer email</th>
+                    <th>Actions</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-order>
@@ -36,9 +41,37 @@
                     <td>{{ order.AmazonOrderId }}</td>
                     <td>{{ order.PurchaseDate | date:'dd/MM/yyyy HH:mm' }}</td>
                     <td>{{ order.BuyerInfo.BuyerEmail }}</td>
+                    <td>
+                        <div class="d-flex justify-content-start" style="gap: 10px">
+                            <img (click)="navigate(order)" class="button" width="30px" src="assets/project/more.svg"
+                                 alt="pencil">
+                        </div>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>
 
     </div>
+    <div *ngIf="(queryParams$ | async)?.['id'] && item" class="col outer m-0 p-0 details" style="min-width: 300px">
+
+        <div class="row m-0 p-0 d-flex justify-content-end bg-body-secondary align-items-center p-2">
+
+            <div class="col d-flex flex-column">
+                <small class="fw-bold">Details</small>
+                <small>{{item.AmazonOrderId}}</small>
+            </div>
+
+            <div class="col-auto">
+                <img class="close" width="20px" (click)="closeItemDetails()" src="assets/project/close.svg" alt="close">
+            </div>
+        </div>
+
+        <div class="orderitem p-2 m-1" *ngFor="let item of item.OrderItems[0].OrderItems">
+            <div class="col"><small>Item: </small> <span class="">{{ item.Title }}</span></div>
+            <div class="col"><small>Qty. ordered: </small> <span class="">{{ item.QuantityOrdered }}</span></div>
+            <div class="col"><small>Qty. shipped: </small> <span class="">{{ item.QuantityShipped }}</span></div>
+        </div>
+    </div>
+
+
 </div>
