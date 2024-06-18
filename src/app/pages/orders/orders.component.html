@@ -54,7 +54,7 @@
     </div>
     <div *ngIf="(queryParams$ | async)?.['id'] && item" class="col outer m-0 p-0 details" style="min-width: 300px">
 
-        <div class="row m-0 p-0 d-flex justify-content-end bg-body-secondary align-items-center p-2">
+        <div class="row m-0 p-2 d-flex justify-content-end bg-body-secondary align-items-center">
 
             <div class="col d-flex flex-column">
                 <small class="fw-bold">Details</small>
@@ -66,10 +66,11 @@
             </div>
         </div>
 
-        <div class="orderitem p-2 m-1" *ngFor="let item of item.OrderItems[0].OrderItems">
-            <div class="col"><small>Item: </small> <span class="">{{ item.Title }}</span></div>
-            <div class="col"><small>Qty. ordered: </small> <span class="">{{ item.QuantityOrdered }}</span></div>
-            <div class="col"><small>Qty. shipped: </small> <span class="">{{ item.QuantityShipped }}</span></div>
+        <div class="orderitem overflow-hidden m-1" *ngFor="let item of item.OrderItems[0].OrderItems">
+
+            <div class="col p-2 custom-bg"><small class="">{{ item.Title }}</small></div>
+            <div class="col ps-2 pt-1"><small>Qty. ordered: </small> <span class="">{{ item.QuantityOrdered }}</span></div>
+            <div class="col ps-2 pb-1"><small>Qty. shipped: </small> <span class="">{{ item.QuantityShipped }}</span></div>
         </div>
     </div>
 

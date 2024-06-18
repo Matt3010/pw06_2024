@@ -22,7 +22,17 @@
 .details {
   background-color: #f8f9fa;
   overflow-y: auto;
-  max-height: 500px
+  max-height: 500px;
+  animation: fade 0.2s linear;
+  border-radius: 8px !important;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  } to {
+  opacity: 1;
+      }
 }
 
 .orderitem {
@@ -46,4 +56,8 @@
     transform: scale(1);
     transition: all 0.2s;
   }
+}
+
+.custom-bg {
+  background-color: #f5f5f5;
 }
