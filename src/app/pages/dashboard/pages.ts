@@ -2,6 +2,7 @@ import {FornitoriComponent} from "../fornitori/fornitori.component";
 import {MagazzinoComponent} from "../magazzino/magazzino.component";
 import {OrdersComponent} from "../orders/orders.component";
 import {AcquistiComponent} from "../acquisti/acquisti.component";
+import {AnalyticsComponent} from "../analytics/analytics.component";
 
 export const pages = [
     {
@@ -31,8 +32,8 @@ export const pages = [
     {
         'title': 'Analytics',
         'img': 'https://www.svgrepo.com/show/376754/analytics.svg',
-        'component': '',
-        'url': '/pages/analytics'
+        'component': AnalyticsComponent,
+        'url': null
     }
 
 ];

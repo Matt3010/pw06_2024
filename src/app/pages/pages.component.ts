@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {FornitoriService} from "../_services/fornitori.service";
 import {ItemService} from "../_services/item.service";
 import {AcquistiService} from "../_services/acquisti.service";
+import {AnalyticsService} from "../_services/analytics.service";
 
 @Component({
     selector: 'app-pages',
@@ -18,6 +19,7 @@ export class PagesComponent {
         private supplierService: FornitoriService,
         private itemService: ItemService,
         private purchaseService: AcquistiService,
+        private analyticsService: AnalyticsService
     ) {
     }
 

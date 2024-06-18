@@ -19,6 +19,9 @@ import {PanelModule} from "primeng/panel";
 import { EditPurchaseComponent } from './acquisti/edit-purchase/edit-purchase.component';
 import { DeletePurchaseComponent } from './acquisti/delete-purchase/delete-purchase.component';
 import { CreatePurchaseComponent } from './acquisti/create-purchase/create-purchase.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import {SalesComponent} from "../components/modals/sales/sales.component";
+import {PurchasesComponent} from "../components/modals/purchases/purchases.component";
 
 @NgModule({
     declarations: [
@@ -36,6 +39,9 @@ import { CreatePurchaseComponent } from './acquisti/create-purchase/create-purch
         EditPurchaseComponent,
         DeletePurchaseComponent,
         CreatePurchaseComponent,
+        AnalyticsComponent,
+        SalesComponent,
+        PurchasesComponent
     ],
     imports: [
         PagesRoutingModule,

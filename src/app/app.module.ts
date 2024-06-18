@@ -29,7 +29,7 @@ import {EmailSentComponent} from './pages/auth/password-steps/email-sent/email-s
 import {SettingsComponent} from './components/modals/settings/settings.component';
 import {ChangePasswordComponent} from './components/modals/change-password/change-password.component';
 import {MdLgComponent} from "./components/modals-templates/md-lg/md-lg.component";
-import { InvoiceDetailsComponent } from './components/modals/invoice-details/invoice-details.component';
+import {InvoiceDetailsComponent} from './components/modals/invoice-details/invoice-details.component';
 import {PanelModule} from "primeng/panel";
 
 @NgModule({
@@ -55,7 +55,7 @@ import {PanelModule} from "primeng/panel";
         EmailSentComponent,
         ChangePasswordComponent,
         MdLgComponent,
-        InvoiceDetailsComponent
+        InvoiceDetailsComponent,
     ],
     imports: [
         BrowserModule,
