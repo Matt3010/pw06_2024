@@ -14,6 +14,7 @@ export class AnalyticsService {
 
   apiUrl: string;
   sales$ = new BehaviorSubject<any[] | null>(null);
+  purchases$ = new BehaviorSubject<any[] | null>(null);
 
   constructor(
       private http: HttpClient,
@@ -23,13 +24,23 @@ export class AnalyticsService {
   ) {
     this.apiUrl = environment.api_url + '/analytics';
     if (!this.sales$.value) {
-      this.fetchSales();
+      this.fetchSales({});
+    }
+
+    if (!this.purchases$.value) {
+      this.fetchPurchases({});
     }
   }
 
-  fetchSales() {
-      this.http.post(this.apiUrl + '/sales', {}).subscribe((res: any) => {
+  fetchSales(body: any) {
+      this.http.post(this.apiUrl + '/sales', body).subscribe((res: any) => {
         this.sales$.next(res);
+      })
+  }
+
+  fetchPurchases(body: any) {
+      this.http.post(this.apiUrl + '/purchases', body).subscribe((res: any) => {
+        this.purchases$.next(res);
       })
   }
 

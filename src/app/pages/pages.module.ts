@@ -22,6 +22,7 @@ import { CreatePurchaseComponent } from './acquisti/create-purchase/create-purch
 import { AnalyticsComponent } from './analytics/analytics.component';
 import {SalesComponent} from "../components/modals/sales/sales.component";
 import {PurchasesComponent} from "../components/modals/purchases/purchases.component";
+import {CalendarModule} from "primeng/calendar";
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import {PurchasesComponent} from "../components/modals/purchases/purchases.compo
         FormsModule,
         TreeTableModule,
         PanelModule,
+        CalendarModule,
     ],
     providers: []
 })

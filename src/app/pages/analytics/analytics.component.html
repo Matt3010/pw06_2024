@@ -1,13 +1,103 @@
-
-
 <div class="row container-tab" style="gap: 5px;">
-    <div class="col fw-bold clickable d-flex align-items-center justify-content-center" (click)="step = 1" [class]="step === 1 ? 'active py-1' : 'disabled'">Purchases</div>
-    <div class="col fw-bold clickable d-flex align-items-center justify-content-center" (click)="step = 2" [class]="step === 2 ? 'active py-1' : 'disabled'">Sales</div>
+    <div class="col fw-bold clickable d-flex align-items-center justify-content-center" (click)="step = 1;"
+         [class]="step === 1 ? 'active py-1' : 'disabled'">Purchases
+    </div>
+    <div class="col fw-bold clickable d-flex align-items-center justify-content-center" (click)="step = 2;"
+         [class]="step === 2 ? 'active py-1' : 'disabled'">Sales
+    </div>
 </div>
 
+<div class="row m-4">
+    <div *ngIf="step === 2" class="col-12 d-flex align-items-center widget mb-4 flex-wrap" style="gap: 25px">
+        <div class="col-auto">
+            <small>Select Week</small>
+        </div>
+        <div class="col-auto d-flex align-items-center" style="gap: 20px">
+            <input type="date" class="form-control datepickder-input" (change)="weekSelected($event)"/>
+            <small>From: {{ (selectedWeek.start | date: 'mediumDate') || '-' }}</small>
+            <small>to: {{ (selectedWeek.end | date: 'mediumDate') || '-'}}</small>
+        </div>
 
-<div class="row my-4">
-    <div class="col" *ngIf="step === 1">
+        <div class="col-auto d-flex align-items-center" style="gap: 20px">
+            <small>From: <input [(ngModel)]="selectedWeek.start" type="date" class="form-control datepickder-input"
+                                (change)="setFormDate('startDate', $event)"/>
+            </small>
+            <small>to: <input [(ngModel)]="selectedWeek.end" type="date" class="form-control datepickder-input"
+                              (change)="setFormDate('endDate', $event)"/>
+            </small>
+        </div>
+
+        <div class="col-auto d-flex align-items-center" style="gap: 20px" (dblclick)="marketSelected = null; setMarketPlace('')">
+            <small>
+                MarketPlaces:
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="marketSelected"
+                        (ngModelChange)="setMarketPlace($event)">
+                    <option *ngFor="let item of MarkeplaceDictionary" [ngValue]="item.countryCode">{{item.countryName}}</option>
+                </select>
+            </small>
+        </div>
+
+        <div class="col-auto d-flex align-items-center" style="gap: 20px" (dblclick)="itemSelected = null; setItem('')">
+            <small>
+                Items:
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="itemSelected"
+                        (ngModelChange)="setItem($event)">
+                    <option *ngFor="let item of items$ | async" [ngValue]="item.ASIN">{{item.title}}</option>
+                </select>
+            </small>
+        </div>
+    </div>
+
+    <div *ngIf="step === 1" class="col-12 d-flex align-items-center widget mb-4 flex-wrap" style="gap: 25px">
+        <div class="col-auto">
+            <small>Select Week</small>
+        </div>
+        <div class="col-auto d-flex align-items-center" style="gap: 20px">
+            <input type="date" class="form-control datepickder-input" (change)="weekSelectedP($event)"/>
+            <small *ngIf="selectedWeek">From: {{ (selectedWeek.start | date: 'mediumDate') || '-' }}</small>
+            <small *ngIf="selectedWeek">to: {{ (selectedWeek.end! | date: 'mediumDate') || '-' }}</small>
+        </div>
+        <div class="col-auto d-flex align-items-center" style="gap: 20px">
+            <small>From: <input type="date" class="form-control datepickder-input"
+                                (change)="setFormDateP('startDate', $event)"/>
+            </small>
+            <small>to: <input type="date" class="form-control datepickder-input"
+                              (change)="setFormDateP('endDate', $event)"/>
+            </small>
+        </div>
+
+        <div class="col-auto d-flex align-items-center" style="gap: 20px" (dblclick)="item = null; setItemP('')">
+            <small>
+                Items:
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="item"
+                        (ngModelChange)="setItemP($event)">
+                    <option *ngFor="let item of items$ | async" [ngValue]="item.ASIN">{{item.title}}</option>
+                </select>
+            </small>
+        </div>
+
+        <div class="col-auto d-flex align-items-center" style="gap: 20px" (dblclick)="fornitore = null; setSupplier('')">
+            <small>
+                Suppliers:
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="fornitore"
+                        (ngModelChange)="setSupplier($event)">
+                    <option *ngFor="let item of suppliers$ | async" [ngValue]="item.id">{{item.fornitore}}</option>
+                </select>
+            </small>
+        </div>
+
+        <div class="col-auto d-flex align-items-center" style="gap: 20px" (dblclick)="category = null; setCategory('')">
+            <small>
+                Category:
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="category"
+                        (ngModelChange)="setCategory($event)">
+                    <option *ngFor="let item of categories$ | async" [ngValue]="item.id">{{item.category}}</option>
+                </select>
+            </small>
+        </div>
+    </div>
+
+    <div class="col mx-3" *ngIf="step === 1">
         <app-purchases></app-purchases>
     </div>
     <div class="col" *ngIf="step === 2">

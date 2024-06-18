@@ -1,22 +1,24 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import * as d3 from 'd3';
 import { AnalyticsService } from '../../../_services/analytics.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-sales',
     templateUrl: './sales.component.html',
     styleUrls: ['./sales.component.scss']
 })
-export class SalesComponent implements OnInit {
+export class SalesComponent implements OnInit, OnDestroy {
 
     private svg: any;
     private width = 928;
-    private height = 300;
+    private height = 260;
     private marginTop = 20;
     private marginRight = 20;
     private marginBottom = 30;
     private marginLeft = 30;
-    private data!: { totalQuantity: number, totalProfit: number, week: number, year: number }[];
+    public data!: { totalQuantity: number, totalProfit: number, week: number, year: number }[];
+    private salesSubscription!: Subscription;
 
     constructor(
         private el: ElementRef,
@@ -24,7 +26,7 @@ export class SalesComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.analyticsService.sales$.subscribe((res: any) => {
+        this.salesSubscription = this.analyticsService.sales$.subscribe((res: any) => {
             // Assuming `res` is the array of data objects
             this.data = res;
 
@@ -38,16 +40,23 @@ export class SalesComponent implements OnInit {
             });
 
             console.log(this.data); // Check sorted data in console
+
+            // Remove existing SVG if it exists
+            d3.select(this.el.nativeElement).select('svg').remove();
             this.createChart();
         });
+    }
+
+    ngOnDestroy(): void {
+        if (this.salesSubscription) {
+            this.salesSubscription.unsubscribe();
+        }
     }
 
     private createChart(): void {
         if (!this.data || this.data.length === 0) {
             return;
         }
-
-        d3.select(this.el.nativeElement).select('svg').remove();
 
         const x = d3.scaleLinear()
             .domain(d3.extent(this.data, d => d.week) as [number, number])
@@ -126,11 +135,28 @@ export class SalesComponent implements OnInit {
 
     private pointermoved(event: MouseEvent, dot: any, x: any, y: any): void {
         const [xm, ym] = d3.pointer(event);
-        const i = d3.leastIndex(this.data, d => Math.hypot(x(d.week) - xm, y(d.totalProfit) - ym));
-        const d = this.data[i!];
-        dot.attr('transform', `translate(${x(d.week)},${y(d.totalProfit)})`);
-        dot.select('text').text(`$${d.totalProfit.toFixed(2)}`);
-        this.svg.property('value', d).dispatch('input', { bubbles: true });
+
+        // Gestione per il grafico della linea totalProfit
+        const iProfit = d3.leastIndex(this.data, d => Math.hypot(x(d.week) - xm, y(d.totalProfit) - ym));
+        const dProfit = this.data[iProfit!];
+        dot.attr('transform', `translate(${x(dProfit.week)},${y(dProfit.totalProfit)})`);
+        dot.select('text').text(`$${dProfit.totalProfit.toFixed(2)}`);
+        this.svg.property('value', dProfit).dispatch('input', { bubbles: true });
+
+        // Gestione per il grafico della linea totalQuantity
+        const iQuantity = d3.leastIndex(this.data, d => Math.hypot(x(d.week) - xm, y(d.totalQuantity) - ym));
+        const dQuantity = this.data[iQuantity!];
+        // Mostra entrambe le linee nello stesso punto
+        // Aggiungi un secondo punto o testo a `dot` per il grafico totalQuantity
+        // Esegui il render dello stesso punto del grafico totalProfit
+
+        // Aggiungi qui la logica per il grafico totalQuantity
+        // Esegui il render del testo o del punto per visualizzare i dettagli
+
+        // Esegui il rendering combinato dei due punti, se necessario
+        dot.attr('transform', `translate(${x(dProfit.week)},${y(dProfit.totalProfit)})`);
+        dot.select('text').text(`Profit: $${dProfit.totalProfit.toFixed(2)} | Quantity: ${dQuantity.totalQuantity}`);
+        this.svg.property('value', dProfit).dispatch('input', { bubbles: true });
     }
 
     private pointerentered(dot: any): void {
@@ -142,5 +168,4 @@ export class SalesComponent implements OnInit {
         this.svg.node().value = null;
         this.svg.dispatch('input', { bubbles: true });
     }
-
 }
