@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {NgxOtpInputConfig} from "ngx-otp-input";
 import {ActivatedRoute, Params} from "@angular/router";
 import {AuthService} from "../../../_services/auth.service";
 
@@ -17,16 +16,13 @@ export class OtpComponent {
     ) {
     }
 
-    otpInputConfig: NgxOtpInputConfig = {
-        otpLength: 6,
-        pattern: /^[a-zA-Z0-9]+$/
-    };
 
-    verifyOtp(event: string[]) {
-        if (event.every(element => element !== null && element !== '')) {
+
+    verifyOtp(event: string) {
+        if (event.length === 6) {
             this.activatedRoute.params.subscribe((params: Params) => {
                 if (params['userId']) {
-                    this.authService.checkOtp(event.join(''), params['userId'])
+                    this.authService.checkOtp(event, params['userId'])
                 }
             })
         }
