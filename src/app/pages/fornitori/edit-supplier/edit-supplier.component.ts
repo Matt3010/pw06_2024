@@ -11,7 +11,10 @@ import {FornitoriService} from "../../../_services/fornitori.service";
     styleUrls: ['./edit-supplier.component.scss']
 })
 export class EditSupplierComponent implements OnInit{
+
     @Input() options: any;
+
+    errors: string[] = [];
 
     editForm: FormGroup = new FormGroup({
         supplier: new FormControl('', [Validators.required]),
@@ -21,6 +24,9 @@ export class EditSupplierComponent implements OnInit{
         private fornitoreService: FornitoriService,
         private injectorService: ComponentInjectorService
     ) {
+        this.editForm.valueChanges.subscribe((res: any) => {
+            this.getErrors();
+        })
     }
 
     ngOnInit() {
@@ -36,5 +42,29 @@ export class EditSupplierComponent implements OnInit{
         this.fornitoreService.patchSupplier(this.options.item.id, updatedItem)
         this.injectorService.destroyComponent();
     }
+
+    getErrors() {
+        this.errors = [];
+    
+        if (this.editForm.invalid) {
+          Object.keys(this.editForm.controls).forEach((field) => {
+            const control = this.editForm.get(field);
+            if (control && control.errors && control.dirty) {
+              Object.keys(control.errors).forEach((errorKey) => {
+                let errorMessage = "";
+                switch (errorKey) {
+                  case "required":
+                    errorMessage = `${field} non valido/a`;
+                    break;
+                  default:
+                    errorMessage = `${field}: errore non specificato ${errorKey}`;
+                    break;
+                }
+                this.errors.push(errorMessage);
+              });
+            }
+          });
+        }
+      }
 
 }

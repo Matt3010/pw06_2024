@@ -21,5 +21,4 @@ export class DeleteItemComponent {
     this.itemService.deleteItem(this.options.item.ASIN);
     this.injectorService.destroyComponent();
   }
-
 }

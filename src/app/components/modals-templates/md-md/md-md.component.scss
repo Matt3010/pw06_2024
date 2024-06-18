@@ -3,9 +3,8 @@
   border: solid #bbbbbb 0.5px;
   border-radius: 12px;
   width: 600px;
-  height: auto;
-  max-height: 400px;
   overflow: auto;
+  overflow-y: hidden;
   animation: opacity 0.1s ease-in;
   background-color: #ffffff;
 

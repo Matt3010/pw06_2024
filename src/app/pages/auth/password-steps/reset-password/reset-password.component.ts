@@ -72,6 +72,14 @@ export class ResetPasswordComponent implements OnInit {
     if (this.resetForm.invalid) {
       Object.keys(this.resetForm.controls).forEach((field) => {
         const control = this.resetForm.get(field);
+        switch(field) {
+          case 'new_password':
+              field = 'Nuova password';
+              break;
+          case 'confirm_password':
+              field = 'Conferma password';
+              break;
+        }
         if (control && control.errors && control.dirty) {
           Object.keys(control.errors).forEach((errorKey) => {
             let errorMessage = "";

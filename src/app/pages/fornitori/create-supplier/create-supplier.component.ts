@@ -10,6 +10,8 @@ import {FornitoriService} from "../../../_services/fornitori.service";
 })
 export class CreateSupplierComponent {
 
+    errors: string[] = [];
+
     createForm: FormGroup = new FormGroup({
         supplier: new FormControl('', [Validators.required]),
     });
@@ -18,6 +20,9 @@ export class CreateSupplierComponent {
         private supplierService: FornitoriService,
         private injectorService: ComponentInjectorService
     ) {
+        this.createForm.valueChanges.subscribe((res: any) => {
+            this.getErrors();
+        })
     }
 
 
@@ -26,4 +31,28 @@ export class CreateSupplierComponent {
         this.supplierService.createNewSupplier(supplier);
         this.injectorService.destroyComponent();
     }
+
+    getErrors() {
+        this.errors = [];
+    
+        if (this.createForm.invalid) {
+          Object.keys(this.createForm.controls).forEach((field) => {
+            const control = this.createForm.get(field);
+            if (control && control.errors && control.dirty) {
+              Object.keys(control.errors).forEach((errorKey) => {
+                let errorMessage = "";
+                switch (errorKey) {
+                  case "required":
+                    errorMessage = `${field} non valido/a`;
+                    break;
+                  default:
+                    errorMessage = `${field}: errore non specificato ${errorKey}`;
+                    break;
+                }
+                this.errors.push(errorMessage);
+              });
+            }
+          });
+        }
+      }
 }

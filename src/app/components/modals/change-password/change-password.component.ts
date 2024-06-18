@@ -3,6 +3,7 @@ import { PasswordService } from '../../../_services/password.service';
 import { ActivatedRoute } from '@angular/router';
 import { confirmPasswordValidator } from '../../../_utils/custom-validators/password-match.validator';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ComponentInjectorService } from '../../../_utils/component-injector.service';
 
 @Component({
   selector: 'app-change-password',
@@ -23,7 +24,8 @@ export class ChangePasswordComponent {
     }, { validators: [confirmPasswordValidator]});
 
   constructor(
-    private pswService: PasswordService
+    private pswService: PasswordService,
+    private injectorService: ComponentInjectorService
   ) {
     this.changeForm.valueChanges.subscribe((res: any) => {
       this.getErrors();
@@ -38,6 +40,7 @@ export class ChangePasswordComponent {
           newPassword: this.changeForm.value.confirm_password
         }
       );
+      this.injectorService.destroyComponent();
     }
   }
 
@@ -64,6 +67,17 @@ export class ChangePasswordComponent {
     if (this.changeForm.invalid) {
       Object.keys(this.changeForm.controls).forEach((field) => {
         const control = this.changeForm.get(field);
+        switch(field) {
+          case 'old_password':
+              field = 'Vecchia password';
+              break;
+          case 'new_password':
+              field = 'Nuova password';
+              break;
+          case 'confirm_password':
+              field = 'Conferma password';
+              break;
+        }
         if (control && control.errors && control.dirty) {
           Object.keys(control.errors).forEach((errorKey) => {
             let errorMessage = "";
