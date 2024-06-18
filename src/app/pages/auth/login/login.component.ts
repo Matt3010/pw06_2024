@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {AuthService} from "../../../_services/auth.service";
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +12,15 @@ import {AuthService} from "../../../_services/auth.service";
 export class LoginComponent implements OnInit {
 
   constructor(
-      private authService: AuthService
+      private authService: AuthService,
+      private router: Router,
+      private toastService: ToastrService
   ) {}
 
   loginForm!: FormGroup;
   errors: string[] = [];
+
+  intervalId: any;
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -25,7 +31,38 @@ export class LoginComponent implements OnInit {
 
     this.loginForm.valueChanges.subscribe((res: any) => {
       this.getErrors();
+
     })
+    this.addFocusListeners();
+  }
+
+  addFocusListeners(): void {
+    const formControls = this.loginForm.controls;
+    Object.keys(formControls).forEach(controlName => {
+      const controlElement = document.querySelector(`[formcontrolname="${controlName}"]`);
+      if (controlElement) {
+        controlElement.addEventListener('focus', () => {
+          this.startInterval();
+        }, { once: true });
+      }
+    });
+  }
+
+  startInterval(): void {
+    if (!this.intervalId) {
+      this.intervalId = setInterval(() => {
+        this.resetForm();
+      }, 30000);
+    }
+  }
+
+  resetForm() {
+    this.loginForm.reset();
+    this.errors = [];
+    this.toastService.warning('Too much time!', 'TIMEOUT!');
+    clearInterval(this.intervalId);
+    this.intervalId = null;
+    this.addFocusListeners();
   }
 
   login(): void {
