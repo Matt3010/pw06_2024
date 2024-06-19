@@ -16,7 +16,17 @@ export class OtpComponent {
     ) {
     }
 
-
+    otpConfig = {
+        length: 6,
+        inputStyles: {
+            width: '45px',
+            height: '45px',
+            border: '1px solid #ccc',
+            'text-align': 'center',
+            'font-size': '18px',
+            margin: '0 5px'
+        }
+    };
 
     verifyOtp(event: string) {
         if (event.length === 6) {

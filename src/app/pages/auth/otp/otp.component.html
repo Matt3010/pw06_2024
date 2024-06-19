@@ -1,13 +1,11 @@
      <form class="row flex-column align-items-center justify-content-center">
 
-         <div class="col d-flex justify-content-center flex-column justify-content-center align-items-center">
+         <div class="col d-flex justify-content-center flex-column align-items-center">
              <span class="form-title pt-3"> Verify your identity </span>
              <span class="form-subtitle pb-3 text-center">You should have received your OTP via email</span>
          </div>
 
-         <div class="row d-flex justify-content-center" style="gap: 10px;">
-            <div class="col p-0 my-4">
-                <ng-otp-input (onInputChange)="verifyOtp($event)" [config]="{length:6}"></ng-otp-input>
-            </div>
+         <div class="col d-flex align-items-center justify-content-center">
+            <ng-otp-input (onInputChange)="verifyOtp($event)" [config]="otpConfig"></ng-otp-input>
         </div>
      </form>

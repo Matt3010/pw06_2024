@@ -10,8 +10,7 @@
       <input type="{{showPassword ? 'text' : 'password'}}" class="form-control form-control-password my-2" placeholder="Password" formControlName="password"/>
       <div class="input-group-prepend d-flex align-items-center justify-content-center my-2">
         <span class="input-group-text"
-              (mousedown)="toggleShowPassword(true)"
-              (mouseup)="toggleShowPassword(false)"
+              (click)="toggleShowPassword()"
               role="button">
           <img class="show-password" src="assets/project/eye.svg" alt="showPsw">
         </span>
