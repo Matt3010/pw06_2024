@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {AuthService} from "../../../_services/auth.service";
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
@@ -19,10 +19,9 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   errors: string[] = [];
+  interval!: any;
 
   showPassword: boolean = false;
-
-  intervalId: any;
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -38,6 +37,20 @@ export class LoginComponent implements OnInit {
     this.addFocusListeners();
   }
 
+  ngOnDestroy(): void {
+    if(this.interval) {
+      clearInterval(this.interval);
+    }
+  }
+
+  startInterval(): void {
+    if(!this.interval) {
+      this.interval = setInterval(() => {
+        this.resetForm();
+      }, 30000);
+    }
+  }
+
   addFocusListeners(): void {
     const formControls = this.loginForm.controls;
     Object.keys(formControls).forEach(controlName => {
@@ -50,20 +63,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  startInterval(): void {
-    if (!this.intervalId) {
-      this.intervalId = setInterval(() => {
-        this.resetForm();
-      }, 30000);
-    }
-  }
-
   resetForm() {
     this.loginForm.reset();
     this.errors = [];
     this.toastService.warning('Too much time!', 'TIMEOUT!');
-    clearInterval(this.intervalId);
-    this.intervalId = null;
+    clearInterval(this.interval);
+    this.interval = null;
     this.addFocusListeners();
   }
 
@@ -80,8 +85,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  toggleShowPassword(showPassword: boolean) {
-    this.showPassword = showPassword;
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
   getErrors() {
