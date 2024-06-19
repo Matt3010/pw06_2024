@@ -48,10 +48,11 @@ export class AuthService {
         this.http.post(this.apiUrl + '/login', body).subscribe((res: any) => {
             this.router.navigateByUrl('auth/otp/' + res.userId)
         }, (err) => {
-            if (err.status === 401) {
-                this.toastrService.error('Wrong password', 'Message from OrderBox!')
-            } else {
-                this.toastrService.error('Something went wrong...', 'Message from OrderBox!')
+            if (err.error.code === 'password is incorrect') {
+                this.toastrService.error(err.error.code, 'Message from OrderBox!');
+            }
+            if(err.error.code === 'The user is not confirmed') {
+                this.router.navigateByUrl('auth/verified/ko');
             }
         })
     }
