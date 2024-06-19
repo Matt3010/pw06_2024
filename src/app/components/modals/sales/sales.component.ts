@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import * as d3 from 'd3';
-import { AnalyticsService } from '../../../_services/analytics.service';
-import { Subscription } from 'rxjs';
+import {AnalyticsService} from '../../../_services/analytics.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-sales',
@@ -12,7 +12,7 @@ export class SalesComponent implements OnInit, OnDestroy {
 
     private svg: any;
     private width = 928;
-    private height = 260;
+    private height = 230;
     private marginTop = 20;
     private marginRight = 20;
     private marginBottom = 30;
@@ -27,23 +27,26 @@ export class SalesComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.salesSubscription = this.analyticsService.sales$.subscribe((res: any) => {
-            // Assuming `res` is the array of data objects
-            this.data = res;
 
-            // Sort data first by week, then by year
-            this.data.sort((a, b) => {
-                if (a.week !== b.week) {
-                    return a.week - b.week;
-                } else {
-                    return a.year - b.year;
-                }
-            });
+            if(res) {
+                // Assuming `res` is the array of data objects
+                this.data = res;
 
-            console.log(this.data); // Check sorted data in console
+                // Sort data first by week, then by year
+                this.data.sort((a, b) => {
+                    if (a.week !== b.week) {
+                        return a.week - b.week;
+                    } else {
+                        return a.year - b.year;
+                    }
+                });
 
-            // Remove existing SVG if it exists
-            d3.select(this.el.nativeElement).select('svg').remove();
-            this.createChart();
+                console.log(this.data); // Check sorted data in console
+
+                // Remove existing SVG if it exists
+                d3.select(this.el.nativeElement).select('svg').remove();
+                this.createChart();
+            }
         });
     }
 

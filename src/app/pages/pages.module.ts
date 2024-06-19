@@ -23,6 +23,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import {SalesComponent} from "../components/modals/sales/sales.component";
 import {PurchasesComponent} from "../components/modals/purchases/purchases.component";
 import {CalendarModule} from "primeng/calendar";
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import {CalendarModule} from "primeng/calendar";
         TreeTableModule,
         PanelModule,
         CalendarModule,
+        BsDatepickerModule,
     ],
     providers: []
 })
