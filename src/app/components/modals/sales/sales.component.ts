@@ -1,7 +1,7 @@
-import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import * as d3 from 'd3';
-import {AnalyticsService} from '../../../_services/analytics.service';
-import {Subscription} from 'rxjs';
+import { AnalyticsService } from '../../../_services/analytics.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-sales',
@@ -27,8 +27,7 @@ export class SalesComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.salesSubscription = this.analyticsService.sales$.subscribe((res: any) => {
-
-            if(res) {
+            if (res) {
                 // Assuming `res` is the array of data objects
                 this.data = res;
 
@@ -61,6 +60,15 @@ export class SalesComponent implements OnInit, OnDestroy {
             return;
         }
 
+        // Check if there's only one element in the data array
+        if (this.data.length === 1) {
+            this.createBarChart();
+        } else {
+            this.createLineChart();
+        }
+    }
+
+    private createLineChart(): void {
         const x = d3.scaleLinear()
             .domain(d3.extent(this.data, d => d.week) as [number, number])
             .range([this.marginLeft, this.width - this.marginRight]);
@@ -136,6 +144,62 @@ export class SalesComponent implements OnInit, OnDestroy {
             .on('touchstart', (event: TouchEvent) => event.preventDefault());
     }
 
+    private createBarChart(): void {
+        const x = d3.scaleBand()
+            .domain(['totalProfit', 'totalQuantity'])
+            .range([this.marginLeft, this.width - this.marginRight])
+            .padding(0.4);
+
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(this.data, d => Math.max(d.totalProfit, d.totalQuantity)) as number])
+            .range([this.height - this.marginBottom, this.marginTop]);
+
+        this.svg = d3.select(this.el.nativeElement).append('svg')
+            .attr('width', '100%')
+            .attr('height', this.height)
+            .attr('viewBox', `0 0 ${this.width} ${this.height}`)
+            .attr('style', 'max-width: 100%; height: auto; overflow: visible; font: 10px sans-serif;');
+
+        this.svg.append('g')
+            .attr('transform', `translate(0,${this.height - this.marginBottom})`)
+            .call(d3.axisBottom(x).tickSizeOuter(0));
+
+        this.svg.append('g')
+            .attr('transform', `translate(${this.marginLeft},0)`)
+            .call(d3.axisLeft(y))
+            .call((g: any) => g.select('.domain').remove())
+            .call((g: any) => g.selectAll('.tick line').clone()
+                .attr('x2', this.width - this.marginLeft - this.marginRight)
+                .attr('stroke-opacity', 0.1))
+            .call((g: any) => g.append('text')
+                .attr('x', -this.marginLeft)
+                .attr('y', 10)
+                .attr('fill', 'currentColor')
+                .attr('text-anchor', 'start')
+                .text('↑ Value'));
+
+        const bars = this.svg.selectAll('.bar')
+            .data([this.data[0]]);
+
+        bars.enter()
+            .append('rect')
+            .attr('class', 'bar')
+            .attr('x', (d: any) => x('totalProfit')!)
+            .attr('y', (d: any) => y(d.totalProfit))
+            .attr('width', x.bandwidth() / 2)
+            .attr('height', (d: any) => y(0) - y(d.totalProfit))
+            .attr('fill', 'steelblue');
+
+        bars.enter()
+            .append('rect')
+            .attr('class', 'bar')
+            .attr('x', (d: any) => x('totalQuantity')! + x.bandwidth() / 2)
+            .attr('y', (d: any) => y(d.totalQuantity))
+            .attr('width', x.bandwidth() / 2)
+            .attr('height', (d: any) => y(0) - y(d.totalQuantity))
+            .attr('fill', 'green');
+    }
+
     private pointermoved(event: MouseEvent, dot: any, x: any, y: any): void {
         const [xm, ym] = d3.pointer(event);
 
@@ -149,14 +213,6 @@ export class SalesComponent implements OnInit, OnDestroy {
         // Gestione per il grafico della linea totalQuantity
         const iQuantity = d3.leastIndex(this.data, d => Math.hypot(x(d.week) - xm, y(d.totalQuantity) - ym));
         const dQuantity = this.data[iQuantity!];
-        // Mostra entrambe le linee nello stesso punto
-        // Aggiungi un secondo punto o testo a `dot` per il grafico totalQuantity
-        // Esegui il render dello stesso punto del grafico totalProfit
-
-        // Aggiungi qui la logica per il grafico totalQuantity
-        // Esegui il render del testo o del punto per visualizzare i dettagli
-
-        // Esegui il rendering combinato dei due punti, se necessario
         dot.attr('transform', `translate(${x(dProfit.week)},${y(dProfit.totalProfit)})`);
         dot.select('text').text(`Profit: $${dProfit.totalProfit.toFixed(2)} | Quantity: ${dQuantity.totalQuantity}`);
         this.svg.property('value', dProfit).dispatch('input', { bubbles: true });
