@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {AuthService} from "../../../_services/auth.service";
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-otp',
@@ -16,6 +17,8 @@ export class OtpComponent {
     ) {
     }
 
+    Otp: FormControl = new FormControl('', [Validators.required, Validators.minLength(6)])
+
     otpConfig = {
         length: 6,
         inputStyles: {
@@ -28,14 +31,13 @@ export class OtpComponent {
         }
     };
 
-    verifyOtp(event: string) {
-        if (event.length === 6) {
+    verifyOtp() {
+        console.warn('The Wall')
             this.activatedRoute.params.subscribe((params: Params) => {
                 if (params['userId']) {
-                    this.authService.checkOtp(event, params['userId'])
+                    this.authService.checkOtp(this.Otp.value, params['userId'])
                 }
             })
-        }
     }
 
 }

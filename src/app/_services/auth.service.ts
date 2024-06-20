@@ -3,7 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, take} from "rxjs";
 import {TokenService} from "./token.service";
 
 
@@ -60,7 +60,7 @@ export class AuthService {
 
     checkOtp(otp: string, userId: string) {
         this.http.post(this.apiUrl + '/verifyOtp', {otp, userId})
-            .subscribe((res: any) => {
+            .pipe(take(1)).subscribe((res: any) => {
                 this.tokenService.saveToken(res.token)
                 this.currentUser$.next(res.user)
             }, (err) => {

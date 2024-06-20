@@ -6,6 +6,9 @@
          </div>
 
          <div class="col d-flex align-items-center justify-content-center">
-            <ng-otp-input (onInputChange)="verifyOtp($event)" [config]="otpConfig"></ng-otp-input>
+            <ng-otp-input [formCtrl]="Otp" [config]="otpConfig"></ng-otp-input>
+        </div>
+        <div class="col d-flex align-items-center justify-content-center pt-2">
+            <button class="form-submit-button w-100 my-2" (click)="verifyOtp()" [disabled]="Otp.invalid">Verify OTP</button>
         </div>
      </form>
