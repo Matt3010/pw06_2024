@@ -4,6 +4,7 @@ import {ComponentInjectorService} from "../../_utils/component-injector.service"
 import {MdSmComponent} from "../../components/modals-templates/md-sm/md-sm.component";
 import {MdXlComponent} from "../../components/modals-templates/md-xl/md-xl.component";
 import {Router} from "@angular/router";
+import {MdMdComponent} from "../../components/modals-templates/md-md/md-md.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -31,8 +32,16 @@ export class DashboardComponent {
   }
 
 
-  openModal(component: any, title: string, url: string | null) {
-    this.injectorService.createComponent(MdXlComponent, {component: component, title: title, goTo: url});
+  openModal(component: any, title: string, url: string | null, size: string) {
+    if(!size) {
+      this.injectorService.createComponent(MdXlComponent, {component: component, title: title, goTo: url});
+    } else {
+
+      if (size === 'md') {
+        this.injectorService.createComponent(MdMdComponent, {component: component, title: title, goTo: url});
+      }
+
+    }
   }
 
   openPreview(url: string, event: MouseEvent) {

@@ -24,6 +24,8 @@ import {SalesComponent} from "../components/modals/sales/sales.component";
 import {PurchasesComponent} from "../components/modals/purchases/purchases.component";
 import {CalendarModule} from "primeng/calendar";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
+import { ExportationComponent } from './exportation/exportation.component';
+import {CsvModule} from "@ctrl/ngx-csv";
 
 @NgModule({
     declarations: [
@@ -43,7 +45,8 @@ import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
         CreatePurchaseComponent,
         AnalyticsComponent,
         SalesComponent,
-        PurchasesComponent
+        PurchasesComponent,
+        ExportationComponent
     ],
     imports: [
         PagesRoutingModule,
@@ -55,6 +58,7 @@ import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
         PanelModule,
         CalendarModule,
         BsDatepickerModule,
+        CsvModule,
     ],
     providers: []
 })

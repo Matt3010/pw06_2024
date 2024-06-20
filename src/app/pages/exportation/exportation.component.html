@@ -1,0 +1,15 @@
+<div class="m-3 row flex-column">
+    <div class="col-12 m-0 p-0 mt-1 mb-2">
+        <span class="fw-medium">Choose what you want to export:</span>
+    </div>
+    <div class="col-12 d-flex flex-row row-container">
+        <div class="col tab" [class]="enitity.selected ? 'tab-active' : null"
+             (click)="enitity.selected = !enitity.selected; push(enitity.items, enitity.title, enitity.selected)"
+             *ngFor="let enitity of exportable_entities">
+            <small class="flex-nowrap">{{enitity.title}}</small>
+        </div>
+    </div>
+    <div class="col-12 m-0 p-0 mt-1 mb-2">
+        <a csvLink [data]="choosenToExport">Download</a>
+    </div>
+</div>

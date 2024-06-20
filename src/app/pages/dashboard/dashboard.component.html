@@ -2,7 +2,7 @@
 
 
     <div class="grid-container">
-        <div (click)="openModal(block.component, block.title, block.url)"
+        <div (click)="openModal(block.component, block.title, block.url, block.size!)"
              [style.background-color]="stringToColor(block.img)" class="grid-item position-relative"
              *ngFor="let block of blocks">
             <img width="40px" [src]="block.img" alt="preview">
