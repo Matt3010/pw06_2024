@@ -8,7 +8,7 @@
   animation: opacity 0.1s ease-in;
   background-color: #ffffff;
 
-  &-top-header-custom {
+  &-top-header-custom-aaaa {
     position: sticky;
     top: 0;
     left: 0;
@@ -25,11 +25,13 @@
 
     .close {
       opacity: 0.5;
+
       &:hover {
         opacity: 1;
         transform: scale(1.1);
         transition: all 0.2s;
       }
+
       &:not(:hover) {
         opacity: 0.5;
         transform: scale(1);
@@ -39,11 +41,13 @@
 
     .expand {
       opacity: 0.5;
+
       &:hover {
         opacity: 1;
         transform: scale(1.1);
         transition: all 0.2s;
       }
+
       &:not(:hover) {
         opacity: 0.5;
         transform: scale(1);
@@ -110,4 +114,18 @@
 
 .expand {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .expand {
+    top: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+  }
+}
+
+.expand {
+  bottom: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
 }
