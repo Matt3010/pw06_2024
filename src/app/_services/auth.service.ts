@@ -30,9 +30,9 @@ export class AuthService {
         private router: Router,
         private toastrService: ToastrService,
         private tokenService: TokenService,
-     ) {
+    ) {
         this.apiUrl = environment.api_url;
-        if(!this.currentUser$.value && !router.url.includes('verified') && !router.url.includes('reset-password?token')) {
+        if (!this.currentUser$.value && !router.url.includes('verified') && !router.url.includes('reset-password?token')) {
             this.me();
         }
     }
@@ -48,11 +48,10 @@ export class AuthService {
         this.http.post(this.apiUrl + '/login', body).subscribe((res: any) => {
             this.router.navigateByUrl('auth/otp/' + res.userId)
         }, (err) => {
-            if (err.error.code === 'password is incorrect') {
-                this.toastrService.error(err.error.code, 'Message from OrderBox!');
-            }
-            if(err.error.code === 'The user is not confirmed') {
+            if (err.error.code === 'The user is not confirmed') {
                 this.router.navigateByUrl('auth/verified/ko');
+            } else {
+                this.toastrService.error(err.error.code, 'Message from OrderBox!');
             }
         })
     }
