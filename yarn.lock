@@ -1342,6 +1342,11 @@
   resolved "https://registry.npmjs.org/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
+"@e965/xlsx@^0.20.0":
+  version "0.20.1"
+  resolved "https://registry.npmjs.org/@e965/xlsx/-/xlsx-0.20.1.tgz"
+  integrity sha512-zRv8NLB1H6aqQyZt3/gLjd0xkZsH+/WIRi4YHAw1koESNTPPmzXJbPqO2HMN7DZB1vnF1USKxQ9ZvS0S9Lqmbg==
+
 "@esbuild/darwin-arm64@0.18.17":
   version "0.18.17"
   resolved "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.18.17.tgz"
@@ -2093,6 +2098,11 @@
     "@types/express-serve-static-core" "^4.17.33"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/file-saver@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.npmjs.org/@types/file-saver/-/file-saver-2.0.7.tgz"
+  integrity sha512-dNKVfHd/jk0SkR/exKGj2ggkB45MAkzvWCaqLUUgkyjITkGNzH8H+yUwr+BLJUBjZOe9w8X3wgmXhZDRg1ED6A==
 
 "@types/geojson@*":
   version "7946.0.14"
@@ -4672,6 +4682,11 @@ figures@^3.0.0, figures@^3.2.0:
   dependencies:
     escape-string-regexp "^1.0.5"
 
+file-saver@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/file-saver/-/file-saver-2.0.5.tgz"
+  integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
+
 filesize@^6.1.0:
   version "6.4.0"
   resolved "https://registry.npmjs.org/filesize/-/filesize-6.4.0.tgz"
@@ -6052,6 +6067,13 @@ json-2-csv@5.0.0:
   dependencies:
     deeks "3.0.2"
     doc-path "4.0.2"
+
+json-as-xlsx@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.npmjs.org/json-as-xlsx/-/json-as-xlsx-2.5.6.tgz"
+  integrity sha512-z7phlB+VgS9wZv2N4SBKlguC3C7uauSj2PYSZICCrPaiu1lu8zkCpzZ4sOHWi0/3Je0CJl87q+J+3mpZbxpOew==
+  dependencies:
+    "@e965/xlsx" "^0.20.0"
 
 json-bigint@^1.0.0:
   version "1.0.0"

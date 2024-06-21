@@ -5,6 +5,7 @@ import { CategoryService } from '../../_services/category.service';
 import { ItemService } from '../../_services/item.service';
 import { OrderService } from '../../_services/order.service';
 import { FornitoriService } from '../../_services/fornitori.service';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: 'app-exportation',
@@ -78,10 +79,6 @@ export class ExportationComponent {
         console.log(this.choosenToExport);
     }
 
-    deepEqual(obj1: any, obj2: any): boolean {
-        return JSON.stringify(obj1) === JSON.stringify(obj2);
-    }
-
     exportCSV() {
         const csvData = this.generateCSVData();
 
@@ -104,6 +101,22 @@ export class ExportationComponent {
         } else {
             console.error('Download is not supported on this browser.');
         }
+    }
+
+    exportToXLSX() {
+        const csvData = this.generateCSVData();
+
+        // Parse CSV data
+        const workbook = XLSX.utils.book_new();
+        const worksheet = XLSX.utils.aoa_to_sheet(this.csvToArray(csvData));
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Exported Data');
+
+        // Generate a unique file name
+        const currentDate = new Date().toISOString().slice(0, 10);
+        const fileName = `exported_data_${currentDate}.xlsx`;
+
+        // Save the workbook
+        XLSX.writeFile(workbook, fileName);
     }
 
     generateCSVData(): string {
@@ -193,5 +206,19 @@ export class ExportationComponent {
         }
 
         return maxCount;
+    }
+
+    private csvToArray(csvData: string): any[][] {
+        const lines = csvData.split('\n');
+        const result: any[][] = [];
+        lines.forEach(line => {
+            const row = line.split(',');
+            result.push(row);
+        });
+        return result;
+    }
+
+    deepEqual(obj1: any, obj2: any): boolean {
+        return JSON.stringify(obj1) === JSON.stringify(obj2);
     }
 }
