@@ -1,9 +1,9 @@
 <div class="row container-tab mb-3" style="gap: 5px;">
     <div class="col fw-bold clickable d-flex align-items-center justify-content-center" (click)="step = 1;"
-         [class]="step === 1 ? 'active py-1' : 'disabled'">Purchases
+         [class]="step === 2 ? 'active py-1' : 'disabled'">Purchases
     </div>
     <div class="col fw-bold clickable d-flex align-items-center justify-content-center" (click)="step = 2;"
-         [class]="step === 2 ? 'active py-1' : 'disabled'">Sales
+         [class]="step === 1 ? 'active py-1' : 'disabled'">Sales
     </div>
 </div>
 
@@ -83,7 +83,7 @@
     </div>
 </form>
 
-<form [formGroup]="weekForm" class="row mx-4 overflow-hidden">
+<form [formGroup]="purchaseForm" class="row mx-4 overflow-hidden">
     <div *ngIf="step === 1" class="col-12 d-flex align-items-center widget mb-4 flex-wrap" style="gap: 4px">
 
         <div class="element col-auto d-flex flex-column align-items-center">
