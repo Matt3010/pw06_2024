@@ -22,6 +22,8 @@ export class PasswordService {
   sendMail(body: any) {
     this.http.post(this.apiUrl + '/recover-password', body).subscribe((res: any) => {
       this.router.navigateByUrl('auth/email-sent');
+    }, (err) => {
+      this.toastSrv.error('Invalid email address', 'WARNING');
     })
   }
 
