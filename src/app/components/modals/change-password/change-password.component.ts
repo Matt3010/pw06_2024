@@ -12,6 +12,8 @@ import { ComponentInjectorService } from '../../../_utils/component-injector.ser
 })
 export class ChangePasswordComponent {
 
+  showPassword: boolean = false;
+
   token: string | null = null;
 
   errors: string[] = [];
@@ -30,6 +32,10 @@ export class ChangePasswordComponent {
     this.changeForm.valueChanges.subscribe((res: any) => {
       this.getErrors();
     });
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
   changePassword() {

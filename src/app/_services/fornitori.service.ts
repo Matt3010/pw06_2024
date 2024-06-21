@@ -63,7 +63,7 @@ export class FornitoriService {
         this.http.post<Supplier>(this.apiUrl, {fornitore}).subscribe((res: Supplier) => {
             const last = this.suppliers$.value
             last?.push(res);
-            this.suppliers$.next(last);
+            this.fetchSuppliers();
         })
     }
 

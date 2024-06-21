@@ -13,6 +13,8 @@ import {SpinnerService} from "../../../_services/spinner.service";
 export class RegisterComponent {
 
     isDisabled: boolean = false;
+    showPassword: boolean = false;
+
     step: number = 1;
     errors: string[] = [];
 
@@ -54,6 +56,9 @@ export class RegisterComponent {
         }
     }
 
+    toggleShowPassword() {
+        this.showPassword = !this.showPassword;
+    }
 
     getErrors() {
         this.errors = [];
