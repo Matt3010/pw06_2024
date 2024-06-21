@@ -11,7 +11,7 @@
 - [Analytics](#analytics)
 
 ## Login
-![Login](<img width="1440" alt="login" src="https://github.com/Matt3010/pw06_2024/assets/73390839/c619e653-5abf-4371-b499-8a790f172d9e">)
+![Login]<img width="1440" alt="login" src="https://github.com/Matt3010/pw06_2024/assets/73390839/c619e653-5abf-4371-b499-8a790f172d9e">
 
 ## Register - Step 1
 ![Register - Step 1](./src/assets/readme/register_step_1.png "Register - Step 1")
