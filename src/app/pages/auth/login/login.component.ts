@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {AuthService} from "../../../_services/auth.service";
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import {SpinnerService} from "../../../_services/spinner.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
       private router: Router,
-      private toastService: ToastrService
+      private toastService: ToastrService,
+    private spinnerService: SpinnerService
   ) {}
 
   loginForm!: FormGroup;
@@ -74,6 +76,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login(): void {
     if(this.loginForm.valid) {
+      this.spinnerService.load();
       this.authService.login(
           {
             username: this.loginForm.value.email,

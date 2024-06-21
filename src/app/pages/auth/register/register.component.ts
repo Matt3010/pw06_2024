@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {confirmPasswordValidator} from "../../../_utils/custom-validators/password-match.validator";
 import {AuthService} from "../../../_services/auth.service";
 import {MenuItem} from "primeng/api";
+import {SpinnerService} from "../../../_services/spinner.service";
 
 @Component({
     selector: 'app-register',
@@ -26,7 +27,8 @@ export class RegisterComponent {
 
 
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private spinnerService: SpinnerService
     ) {
         this.registerForm.valueChanges.subscribe((res: any) => {
             this.getErrors();
@@ -36,6 +38,7 @@ export class RegisterComponent {
 
     onSubmit() {
         if (this.registerForm.valid) {
+            this.spinnerService.load();
             this.authService.register(
                 {
                     firstName: this.registerForm.value.first_name,

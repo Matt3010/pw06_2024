@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {BehaviorSubject, take} from "rxjs";
 import {TokenService} from "./token.service";
+import {SpinnerService} from "./spinner.service";
 
 
 export interface User {
@@ -29,6 +30,7 @@ export class AuthService {
         private http: HttpClient,
         private router: Router,
         private toastrService: ToastrService,
+        private spinnerService: SpinnerService,
         private tokenService: TokenService,
     ) {
         this.apiUrl = environment.api_url;
@@ -39,6 +41,7 @@ export class AuthService {
 
     register(body: any) {
         this.http.post(this.apiUrl + '/register', body).subscribe((res) => {
+            this.spinnerService.hide();
             this.router.navigateByUrl('auth/verified/check-email')
         })
     }
@@ -53,17 +56,22 @@ export class AuthService {
             } else {
                 this.toastrService.error(err.error.code, 'Message from OrderBox!');
             }
+            this.spinnerService.hide();
         })
     }
 
 
     checkOtp(otp: string, userId: string) {
         this.http.post(this.apiUrl + '/verifyOtp', {otp, userId})
-            .pipe(take(1)).subscribe((res: any) => {
+            .pipe(
+                take(1)
+            )
+            .subscribe((res: any) => {
                 this.tokenService.saveToken(res.token)
-                this.currentUser$.next(res.user)
+                this.currentUser$.next(res.user);
             }, (err) => {
                 if (err) {
+                    this.spinnerService.hide();
                     this.toastrService.error(err.error.error, 'Message from OrderBox!')
                 }
             });

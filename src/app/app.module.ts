@@ -31,6 +31,7 @@ import {ChangePasswordComponent} from './components/modals/change-password/chang
 import {MdLgComponent} from "./components/modals-templates/md-lg/md-lg.component";
 import {InvoiceDetailsComponent} from './components/modals/invoice-details/invoice-details.component';
 import {PanelModule} from "primeng/panel";
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
     declarations: [
@@ -56,6 +57,7 @@ import {PanelModule} from "primeng/panel";
         ChangePasswordComponent,
         MdLgComponent,
         InvoiceDetailsComponent,
+        SpinnerComponent,
      ],
     imports: [
         BrowserModule,

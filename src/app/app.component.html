@@ -1,1 +1,6 @@
+
+<div *ngIf="spinner$ | async" class="position-absolute w-100 h-100 d-flex justify-content-center align-items-center spinner" style="z-index: 1000000000000000; background-color: rgba(138,138,138,0.61)">
+    <span class="loader"></span>
+</div>
+
 <router-outlet></router-outlet>
