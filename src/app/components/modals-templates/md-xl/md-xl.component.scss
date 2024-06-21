@@ -72,8 +72,8 @@
     /* From https://css.glass */
     background: rgba(0, 0, 0, 0.30);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(0.5px);
-    -webkit-backdrop-filter: blur(0.5px);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
 
     animation: opacity 0.1s ease-in;
   }
@@ -118,8 +118,10 @@
 
 @media only screen and (max-width: 600px) {
   .expand {
-    top: 0 !important;
-    right: 0 !important;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 0px;
+    right: 0;
     z-index: 9999 !important;
   }
 }
@@ -128,4 +130,19 @@
   bottom: 0 !important;
   right: 0 !important;
   z-index: 9999 !important;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 5px;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    transition: all 0.2s;
+  }
+
+  &:not(:hover) {
+    opacity: 0.5;
+    transform: scale(1);
+    transition: all 0.2s;
+  }
 }
