@@ -6,6 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {BehaviorSubject, take} from "rxjs";
 import {TokenService} from "./token.service";
 import {SpinnerService} from "./spinner.service";
+import { MessageService } from 'primeng/api';
 
 
 export interface User {
@@ -29,7 +30,7 @@ export class AuthService {
     constructor(
         private http: HttpClient,
         private router: Router,
-        private toastrService: ToastrService,
+        private messageService: MessageService,
         private spinnerService: SpinnerService,
         private tokenService: TokenService,
     ) {
@@ -56,7 +57,7 @@ export class AuthService {
             if (err.error.code === 'The user is not confirmed') {
                 this.router.navigateByUrl('auth/verified/ko');
             } else {
-                this.toastrService.error(err.error.code, 'Message from OrderBox!');
+                this.messageService.add({severity: 'error', summary:'Error', detail: err.error.code})
             }
             this.spinnerService.hide();
         })
@@ -74,7 +75,7 @@ export class AuthService {
             }, (err) => {
                 if (err) {
                     this.spinnerService.hide();
-                    this.toastrService.error(err.error.error, 'Message from OrderBox!')
+                this.messageService.add({severity: 'error', summary:'Error', detail: err.error.code})
                 }
             });
     }

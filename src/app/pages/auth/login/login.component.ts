@@ -4,6 +4,7 @@ import {AuthService} from "../../../_services/auth.service";
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {SpinnerService} from "../../../_services/spinner.service";
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-      private router: Router,
-      private toastService: ToastrService,
+    private router: Router,
+    private messageService: MessageService,
     private spinnerService: SpinnerService
   ) {}
 
@@ -68,7 +69,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   resetForm() {
     this.loginForm.reset();
     this.errors = [];
-    this.toastService.warning('Too much time!', 'TIMEOUT!');
+    this.messageService.add({severity: 'warn', summary: 'TIMEOUT', detail: 'Too much time to complete login'});
     clearInterval(this.interval);
     this.interval = null;
     this.addFocusListeners();
