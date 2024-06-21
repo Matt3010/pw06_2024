@@ -68,7 +68,7 @@ export class PurchasesComponent implements OnInit, OnDestroy {
                 }
             ],
             chart: {
-                height: 350,
+                height: 285,
                 type: 'line',
                 zoom: {
                     enabled: false
@@ -100,12 +100,22 @@ export class PurchasesComponent implements OnInit, OnDestroy {
                 {
                     title: {
                         text: 'Total Profit ($)'
+                    },
+                    labels: {
+                        formatter: function (val: number) {
+                            return val.toFixed(2);
+                        }
                     }
                 },
                 {
                     opposite: true,
                     title: {
                         text: 'Total Quantity'
+                    },
+                    labels: {
+                        formatter: function (val: number) {
+                            return val.toFixed(2);
+                        }
                     }
                 }
             ],

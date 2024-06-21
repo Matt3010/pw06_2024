@@ -73,7 +73,7 @@ export class SalesComponent implements OnInit, OnDestroy {
                 }
             ],
             chart: {
-                height: 350,
+                height: 285,
                 type: 'bar',
                 zoom: {
                     enabled: false
