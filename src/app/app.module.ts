@@ -56,7 +56,7 @@ import {PanelModule} from "primeng/panel";
         ChangePasswordComponent,
         MdLgComponent,
         InvoiceDetailsComponent,
-    ],
+     ],
     imports: [
         BrowserModule,
         AppRoutingModule,

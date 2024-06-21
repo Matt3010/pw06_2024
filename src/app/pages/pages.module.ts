@@ -26,6 +26,7 @@ import {CalendarModule} from "primeng/calendar";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 import { ExportationComponent } from './exportation/exportation.component';
 import {CsvModule} from "@ctrl/ngx-csv";
+import {NgApexchartsModule} from "ng-apexcharts";
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import {CsvModule} from "@ctrl/ngx-csv";
         CalendarModule,
         BsDatepickerModule,
         CsvModule,
+        NgApexchartsModule,
     ],
     providers: []
 })

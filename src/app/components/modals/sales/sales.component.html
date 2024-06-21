@@ -3,3 +3,16 @@
         No Data for this Query
     </span>
 </div>
+<div id="chart">
+    <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [xaxis]="chartOptions.xaxis"
+            [yaxis]="chartOptions.yaxis"
+            [title]="chartOptions.title"
+            [dataLabels]="chartOptions.dataLabels"
+            [stroke]="chartOptions.stroke"
+            [grid]="chartOptions.grid"
+            [tooltip]="chartOptions.tooltip">
+    </apx-chart>
+</div>

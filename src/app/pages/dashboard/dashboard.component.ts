@@ -35,12 +35,8 @@ export class DashboardComponent {
   openModal(component: any, title: string, url: string | null, size: string) {
     if(!size) {
       this.injectorService.createComponent(MdXlComponent, {component: component, title: title, goTo: url});
-    } else {
-
-      if (size === 'md') {
+    } else if (size === 'md') {
         this.injectorService.createComponent(MdMdComponent, {component: component, title: title, goTo: url});
-      }
-
     }
   }
 
