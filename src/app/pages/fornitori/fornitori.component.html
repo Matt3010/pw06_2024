@@ -11,6 +11,8 @@
                 [paginator]="true"
                 [rowsPerPageOptions]="[10, 25, 50, 100]"
                 [rows]="10"
+                sortField="fornitore"
+                [sortOrder]="1"
                 styleClass="p-datatable-striped" [value]="(suppliers$ | async)!">
             <ng-template pTemplate="header">
                 <tr>
