@@ -68,7 +68,7 @@ export class AcquistiService {
         this.http.post<Purchase>(this.apiUrl, body).subscribe((res: Purchase) => {
             const last = this.purchases$.value
             last?.push(res);
-            this.purchases$.next(last);
+            this.fetchPurchases();
         })
     }
 

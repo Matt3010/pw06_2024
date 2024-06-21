@@ -64,7 +64,7 @@ export class ItemService {
         this.http.post<Supplier>(this.apiUrl, body).subscribe((res: Supplier) => {
             const last = this.items$.value
             last?.push(res);
-            this.items$.next(last);
+            this.fetchItems();
         })
     }
 
