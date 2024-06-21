@@ -7,8 +7,8 @@
   </div>
   <div class="col p-0">
     <div class="input-group">
-      <input type="{{showPassword ? 'text' : 'password'}}" class="form-control form-control-password my-2" placeholder="Password" formControlName="password"/>
-      <div class="input-group-prepend d-flex align-items-center justify-content-center my-2">
+      <input [type]="showPassword ? 'text' : 'password'" class="form-control form-control-password my-2" placeholder="Password" formControlName="password"/>
+      <div class="d-flex align-items-center justify-content-center my-2">
         <span class="input-group-text"
               (click)="toggleShowPassword()"
               role="button">

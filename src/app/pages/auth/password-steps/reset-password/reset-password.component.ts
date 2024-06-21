@@ -11,6 +11,8 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ResetPasswordComponent implements OnInit {
 
+  showPassword: boolean = false;
+
   token: string | null = null;
 
   errors: string[] = [];
@@ -34,6 +36,10 @@ export class ResetPasswordComponent implements OnInit {
     this.route.params.subscribe(param => {
       this.token = this.route.snapshot.queryParamMap.get('token');
     })
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
   resetPassword() {
