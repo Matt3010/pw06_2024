@@ -20,20 +20,20 @@ export class AnalyticsComponent {
     marketSelected: any;
     category: any;
     weekForm: FormGroup = new FormGroup({
-        startDate: new FormControl('', [Validators.required]),
-        endDate: new FormControl('', [Validators.required]),
-        item: new FormControl('', [Validators.required]),
-        marketplaceId: new FormControl('', [Validators.required]),
-        weekRange: new FormControl('', [Validators.required]),
+        startDate: new FormControl(null, [Validators.required]),
+        endDate: new FormControl(null, [Validators.required]),
+        item: new FormControl(null, [Validators.required]),
+        marketplaceId: new FormControl(null, [Validators.required]),
+        weekRange: new FormControl(null, [Validators.required]),
     });
 
     purchaseForm: FormGroup = new FormGroup({
-        startDate: new FormControl('', [Validators.required]),
-        endDate: new FormControl('', [Validators.required]),
-        category: new FormControl('', [Validators.required]),
-        item: new FormControl('', [Validators.required]),
-        supplier: new FormControl('', [Validators.required]),
-        weekRange: new FormControl('', [Validators.required]),
+        startDate: new FormControl(null, [Validators.required]),
+        endDate: new FormControl(null, [Validators.required]),
+        category: new FormControl(null, [Validators.required]),
+        item: new FormControl(null, [Validators.required]),
+        supplier: new FormControl(null, [Validators.required]),
+        weekRange: new FormControl(null, [Validators.required]),
     });
 
     step: 1 | 2 = 2;

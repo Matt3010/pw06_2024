@@ -27,7 +27,7 @@ export class PurchasesComponent implements OnInit, OnDestroy {
                 this.data = res;
                 this.data.sort((a, b) => {
                     if (a.week !== b.week) {
-                        return a.week - b.week;
+                        return a.week - b.week && a.year - b.year;
                     } else {
                         return a.year - b.year;
                     }

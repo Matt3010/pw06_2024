@@ -29,10 +29,6 @@ export class ExportationComponent {
 
     exportable_entities: any[] = [
         {
-            title: 'Purchases',
-            items: [] // Placeholder, will be populated with observable data later
-        },
-        {
             title: 'Sales',
             items: [] // Placeholder, will be populated with observable data later
         },

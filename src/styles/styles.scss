@@ -98,6 +98,6 @@ input {
   display: none !important;
 }
 
-* {
+*:not(.button-*) {
   color: #1c1c1c;
 }

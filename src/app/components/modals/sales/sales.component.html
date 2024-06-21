@@ -3,7 +3,7 @@
         No Data for this Query
     </span>
 </div>
-<div id="chart">
+<div id="chart" *ngIf="this.data.length !== 0">
     <apx-chart
             [series]="chartOptions.series"
             [chart]="chartOptions.chart"

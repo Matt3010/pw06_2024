@@ -35,7 +35,7 @@ export class SalesComponent implements OnInit, OnDestroy {
                 // Sort data first by week, then by year
                 this.data.sort((a, b) => {
                     if (a.week !== b.week) {
-                        return a.week - b.week;
+                        return a.week - b.week && a.year - b.year;
                     } else {
                         return a.year - b.year;
                     }
