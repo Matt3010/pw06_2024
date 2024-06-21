@@ -52,7 +52,7 @@ export class ItemService {
                     const found = lastValue?.findIndex((i: Supplier) => i.ASIN === res.ASIN)
                     if (found !== -1) {
                         lastValue[found] = res;
-                        this.items$.next(lastValue);
+                        this.fetchItems();
                     }
                 }
             }
