@@ -5,7 +5,6 @@ import { CategoryService } from '../../_services/category.service';
 import { ItemService } from '../../_services/item.service';
 import { OrderService } from '../../_services/order.service';
 import { FornitoriService } from '../../_services/fornitori.service';
-import * as XLSX from 'xlsx'; // Importa la libreria xlsx
 
 @Component({
     selector: 'app-exportation',
@@ -85,32 +84,25 @@ export class ExportationComponent {
 
     exportCSV() {
         const csvData = this.generateCSVData();
-        this.downloadFile(csvData, 'csv');
-    }
 
-    exportExcel() {
-        const excelData = this.generateExcelData();
-        this.downloadFile(excelData, 'xlsx');
-    }
+        // Create a Blob object for the CSV content
+        const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
 
-    downloadFile(data: any, fileType: 'csv' | 'xlsx') {
+        // Generate a unique file name
         const currentDate = new Date().toISOString().slice(0, 10);
-        const fileName = `exported_data_${currentDate}.${fileType}`;
+        const fileName = `exported_data_${currentDate}.csv`;
 
-        const blob = new Blob([data], { type: fileType === 'csv' ? 'text/csv;charset=utf-8;' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
-
-        if (window.navigator.msSaveOrOpenBlob) {
-            // For IE
-            window.navigator.msSaveOrOpenBlob(blob, fileName);
-        } else {
-            const link = document.createElement('a');
+        // Create a link element, hide it, direct download
+        const link = document.createElement('a');
+        if (link.download !== undefined) {
             const url = URL.createObjectURL(blob);
-
             link.setAttribute('href', url);
             link.setAttribute('download', fileName);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+        } else {
+            console.error('Download is not supported on this browser.');
         }
     }
 
@@ -148,50 +140,6 @@ export class ExportationComponent {
         }
 
         return csv;
-    }
-
-    generateExcelData(): ArrayBuffer {
-        const wb = XLSX.utils.book_new();
-
-        for (const entity of this.choosenToExport) {
-            const entityTitle = entity.entity;
-            const items = entity.items;
-
-            const ws_name = entityTitle.substr(0, 31); // Excel sheet name length limit
-
-            const ws_data = [];
-
-            if (Array.isArray(items) && items.length > 0 && typeof items[0] === 'object') {
-                const headers = this.extractHeaders(items[0]);
-
-                // Add headers row
-                ws_data.push(['Entity', ...headers]);
-
-                // Add data rows
-                for (const item of items) {
-                    const row = [entityTitle];
-                    for (const header of headers) {
-                        const value = this.getFieldValue(item, header);
-                        const formattedValue = this.formatValue(value);
-                        row.push(formattedValue);
-                    }
-                    ws_data.push(row);
-                }
-            } else {
-                // Add single column data
-                for (const item of items) {
-                    const formattedValue = this.formatValue(item);
-                    ws_data.push([entityTitle, '-', formattedValue]);
-                }
-            }
-
-            const ws = XLSX.utils.aoa_to_sheet(ws_data);
-            XLSX.utils.book_append_sheet(wb, ws, ws_name);
-        }
-
-        // Generate Excel file and return as ArrayBuffer
-        const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-        return wbout;
     }
 
     formatValue(value: any): string {
