@@ -1,4 +1,4 @@
-# Project Title
+<img width="1440" alt="analytics" src="https://github.com/Matt3010/pw06_2024/assets/73390839/b71d5af3-98e5-4054-a89e-aaf7cdfb7154"># Project Title
 
 ## Table of Contents
 - [Login](#login)
@@ -13,7 +13,7 @@
 - [Analytics](#analytics)
 
 ## Login
-![Login](./src/assets/readme/login.png "Login")
+![Login](<img width="1440" alt="login" src="https://github.com/Matt3010/pw06_2024/assets/73390839/c619e653-5abf-4371-b499-8a790f172d9e">)
 
 ## Register - Step 1
 ![Register - Step 1](./src/assets/readme/register_step_1.png "Register - Step 1")
