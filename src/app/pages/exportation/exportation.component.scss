@@ -5,7 +5,7 @@
   padding: 6px 10px 10px 10px;
   text-align: center;
   border-radius: 10px;
-
+  transition: box-shadow 0.1s;
 
   &-active {
     background-color: #efe2db;
@@ -20,5 +20,13 @@
   padding: 6px;
   border-radius: 16px;
   gap: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.17) 0px 0px 0px 1px;
+}
+
+
+.csv {
+  background-color: lightblue;
+  border-radius: 8px;
+  border: 0;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.17) 0px 0px 0px 1px;
 }
