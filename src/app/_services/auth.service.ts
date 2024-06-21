@@ -43,6 +43,8 @@ export class AuthService {
         this.http.post(this.apiUrl + '/register', body).subscribe((res) => {
             this.spinnerService.hide();
             this.router.navigateByUrl('auth/verified/check-email')
+        }, (err) => {
+            this.spinnerService.hide();
         })
     }
 

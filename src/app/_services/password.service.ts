@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {SpinnerService} from "./spinner.service";
+import {Spinner} from "primeng/spinner";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class PasswordService {
     private http: HttpClient,
     private router: Router,
     private spinnerService: SpinnerService,
-    private toastSrv: ToastrService
+    private toastSrv: ToastrService,
   ) {
     this.apiUrl = environment.api_url;
   }
@@ -26,6 +27,7 @@ export class PasswordService {
       this.spinnerService.hide();
       this.router.navigateByUrl('auth/email-sent');
     }, (err) => {
+      this.spinnerService.hide();
       this.toastSrv.error('Invalid email address', 'WARNING');
     })
   }
