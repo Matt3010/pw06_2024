@@ -5,6 +5,7 @@ import {FornitoriService} from "../_services/fornitori.service";
 import {ItemService} from "../_services/item.service";
 import {AcquistiService} from "../_services/acquisti.service";
 import {AnalyticsService} from "../_services/analytics.service";
+import { AfkService } from '../_services/afk.service';
 
 @Component({
     selector: 'app-pages',
@@ -19,7 +20,8 @@ export class PagesComponent {
         private supplierService: FornitoriService,
         private itemService: ItemService,
         private purchaseService: AcquistiService,
-        private analyticsService: AnalyticsService
+        private analyticsService: AnalyticsService,
+        private afkService: AfkService
     ) {
     }
 

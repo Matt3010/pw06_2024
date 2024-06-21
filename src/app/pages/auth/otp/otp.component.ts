@@ -32,12 +32,11 @@ export class OtpComponent {
     };
 
     verifyOtp() {
-        console.warn('The Wall')
-            this.activatedRoute.params.subscribe((params: Params) => {
-                if (params['userId']) {
-                    this.authService.checkOtp(this.Otp.value, params['userId'])
-                }
-            })
+        this.activatedRoute.params.subscribe((params: Params) => {
+            if (params['userId']) {
+                this.authService.checkOtp(this.Otp.value, params['userId'])
+            }
+        })
     }
 
 }
