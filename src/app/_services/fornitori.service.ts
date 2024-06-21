@@ -40,19 +40,19 @@ export class FornitoriService {
                 if (res) {
                     const lastValue = this.suppliers$.value!;
                     const filteredItems = lastValue.filter((i: Supplier) => i.ASIN !== res.ASIN);
-                    this.suppliers$.next(filteredItems);
+                    this.fetchSuppliers();
                 }
             });
     }
 
-    patchSupplier(id: string, body: string) {
+    patchSupplier(id: string, body: any) {
         this.http.patch<Supplier>(this.apiUrl + '/update?id=' + id, body).subscribe((res: Supplier) => {
                 if (res) {
                     const lastValue = this.suppliers$.value!;
                     const found = lastValue?.findIndex((i: Supplier) => i.ASIN === res.ASIN)
                     if (found !== -1) {
                         lastValue[found] = res;
-                        this.suppliers$.next(lastValue);
+                        this.fetchSuppliers();
                     }
                 }
             }

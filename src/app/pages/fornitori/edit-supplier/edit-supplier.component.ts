@@ -39,7 +39,9 @@ export class EditSupplierComponent implements OnInit{
 
     edit() {
         const updatedItem: string = this.editForm.controls['supplier'].value;
-        this.fornitoreService.patchSupplier(this.options.item.id, updatedItem)
+        this.fornitoreService.patchSupplier(this.options.item.id, {
+          fornitore: updatedItem
+        })
         this.injectorService.destroyComponent();
     }
 
