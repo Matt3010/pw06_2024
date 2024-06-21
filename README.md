@@ -39,4 +39,4 @@
 <img width="1440" alt="warehouse" src="https://github.com/Matt3010/pw06_2024/assets/73390839/aa87b5e8-7e6a-49af-a30b-92e23e1028f9">
 
 ## Analytics
-![Uploading analytics.png…]()
+<img width="1440" alt="analytics" src="https://github.com/Matt3010/pw06_2024/assets/73390839/300db18f-0024-43d4-ae76-a10d254f9f1f">
