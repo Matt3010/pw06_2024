@@ -1,5 +1,3 @@
-<img width="1440" alt="analytics" src="https://github.com/Matt3010/pw06_2024/assets/73390839/b71d5af3-98e5-4054-a89e-aaf7cdfb7154"># Project Title
-
 ## Table of Contents
 - [Login](#login)
 - [Register - Step 1](#register---step-1)
