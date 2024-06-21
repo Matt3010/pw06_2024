@@ -69,7 +69,7 @@ export class PurchasesComponent implements OnInit, OnDestroy {
             ],
             chart: {
                 height: 285,
-                type: 'line',
+                type: 'bar',
                 zoom: {
                     enabled: false
                 }

@@ -1,7 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AnalyticsService } from '../../../_services/analytics.service';
-import { Subscription } from 'rxjs';
-import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexYAxis, ApexTitleSubtitle, ApexDataLabels, ApexStroke, ApexTooltip, ApexGrid } from 'ng-apexcharts';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AnalyticsService} from '../../../_services/analytics.service';
+import {Subscription} from 'rxjs';
+import {
+    ApexAxisChartSeries,
+    ApexChart,
+    ApexDataLabels,
+    ApexGrid,
+    ApexStroke,
+    ApexTitleSubtitle,
+    ApexTooltip,
+    ApexXAxis,
+    ApexYAxis
+} from 'ng-apexcharts';
+import {SpinnerService} from "../../../_services/spinner.service";
 
 export type ChartOptions = {
     series: ApexAxisChartSeries;
@@ -25,10 +36,16 @@ export class SalesComponent implements OnInit, OnDestroy {
     public data!: { totalQuantity: number, totalProfit: number, week: number, year: number }[];
     private salesSubscription!: Subscription;
 
-    constructor(private analyticsService: AnalyticsService) { }
+    constructor(
+        private analyticsService: AnalyticsService,
+        private spinnerService: SpinnerService
+    ) {
+    }
 
     ngOnInit(): void {
         this.salesSubscription = this.analyticsService.sales$.subscribe((res: any) => {
+            this.spinnerService.load();
+
             if (res) {
                 this.data = res;
 
@@ -134,5 +151,8 @@ export class SalesComponent implements OnInit, OnDestroy {
                 }
             }
         };
+
+        this.spinnerService.hide();
+
     }
 }

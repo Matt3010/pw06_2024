@@ -7,25 +7,25 @@ import {ExportationComponent} from "../exportation/exportation.component";
 
 export const pages = [
     {
-        'title': 'Magazzino',
+        'title': 'Warehouse',
         'img': 'https://www.svgrepo.com/show/352676/warehouse.svg',
         'component': MagazzinoComponent,
         'url': '/pages/magazzino'
     },
     {
-        'title': 'Ordini',
+        'title': 'Orders',
         'img': 'assets/project/cart.svg',
         'component': OrdersComponent,
         'url': null
     },
     {
-        'title': 'Fornitori',
+        'title': 'Suppliers',
         'img': 'https://www.svgrepo.com/show/507421/shopping-bag.svg',
         'component': FornitoriComponent,
         'url': '/pages/fornitori'
     },
     {
-        'title': 'Acquisti',
+        'title': 'Purchases',
         'img': 'https://www.svgrepo.com/show/432402/article.svg',
         'component': AcquistiComponent,
         'url': '/pages/acquisti'

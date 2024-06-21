@@ -1,4 +1,4 @@
-<div class="row container-tab" style="gap: 5px;">
+<div class="row container-tab mb-3" style="gap: 5px;">
     <div class="col fw-bold clickable d-flex align-items-center justify-content-center" (click)="step = 1;"
          [class]="step === 1 ? 'active py-1' : 'disabled'">Purchases
     </div>
@@ -173,6 +173,6 @@
     <div class="col mx-3" *ngIf="step === 1">
         <app-purchases></app-purchases>
     </div>
-    <div class="col" *ngIf="step === 2">
+    <div class="col mx-3" *ngIf="step === 2">
         <app-sales></app-sales>
     </div>
