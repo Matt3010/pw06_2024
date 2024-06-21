@@ -1,0 +1,18 @@
+<div class="row h-100 text-center" *ngIf="!this.data || this.data.length === 0">
+    <span>
+        No Data for this Query
+    </span>
+</div>
+<div id="chart" *ngIf="this.data.length !== 0">
+    <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [xaxis]="chartOptions.xaxis"
+            [yaxis]="chartOptions.yaxis"
+            [title]="chartOptions.title"
+            [dataLabels]="chartOptions.dataLabels"
+            [stroke]="chartOptions.stroke"
+            [grid]="chartOptions.grid"
+            [tooltip]="chartOptions.tooltip">
+    </apx-chart>
+</div>

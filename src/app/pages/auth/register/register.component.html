@@ -1,0 +1,103 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()"
+      class="row position-relative flex-column justify-content-center align-items-center">
+    <div class="col py-3 d-flex justify-content-center">
+        <span class="form-title">
+            Enter OrderBridge team!
+        </span>
+    </div>
+
+
+    <div class="tabs m-0 p-0 mb-3">
+
+        <span class="entry" [class]="step === 1 ? 'entry-active' : null">
+            Personal info
+        </span>
+        <span class="entry" [class]="step === 2 ? 'entry-active' : null">
+            Account
+        </span>
+
+    </div>
+
+
+    <div class="step-section" *ngIf="step === 1">
+        <div class="col p-0">
+            <input [class]="" formControlName="first_name" type="text" class="form-control my-2"
+                   placeholder="First name">
+        </div>
+
+        <div class="col p-0">
+            <input formControlName="last_name" type="text" class="form-control my-2" placeholder="Last name">
+        </div>
+
+        <div class="col d-flex justify-content-end p-0">
+            <button (click)="step = step + 1"
+                    [disabled]="registerForm.controls['first_name'].invalid || registerForm.controls['last_name'].invalid"
+                    type="submit" class="form-submit-button w-100">Next
+            </button>
+        </div>
+        <div class="col position-relative error-popup d-flex align-items-center" *ngIf="errors.length > 0">
+
+            <img class="close" (click)="errors = []" width="20px" src="assets/project/close.svg" alt="close">
+
+            <ul class="m-0 p-0">
+                <li *ngFor="let error of errors">
+                    {{error | titlecase}}
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="step-section" *ngIf="step === 2">
+        <div class="col p-0">
+            <input [class]="" formControlName="email" type="text" class="form-control my-2" placeholder="Email">
+        </div>
+
+        <div class="col p-0">
+            <div class="input-group">
+            <input formControlName="password" [type]="showPassword ? 'text' : 'password'" class="form-control form-control-password my-2" placeholder="Password">
+                <div class="d-flex align-items-center justify-content-center my-2">
+                    <span class="input-group-text"
+                          (click)="toggleShowPassword()"
+                          role="button">
+                      <img *ngIf="!showPassword" class="show-password" src="assets/project/eye-open.svg" alt="open">
+                      <img *ngIf="showPassword" class="show-password" src="assets/project/eye-close.svg" alt="close">
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col p-0">
+            <input formControlName="confirm_password" type="text" class="form-control my-2"
+                   placeholder="Confirm your password">
+        </div>
+
+        <div class="col d-flex justify-content-end p-0">
+            <button [disabled]="registerForm.invalid" type="submit" class="form-submit-button w-100">Register</button>
+        </div>
+
+        <div class="col position-relative error-popup d-flex align-items-center" *ngIf="errors.length > 0">
+
+            <img class="close" (click)="errors = []" width="20px" src="assets/project/close.svg" alt="close">
+
+            <ul class="m-0 p-0">
+                <li *ngFor="let error of errors">
+                    {{error | titlecase}}
+                </li>
+            </ul>
+        </div>
+
+        <div class="col d-flex justify-content-center p-0 mt-2">
+            <ng-hcaptcha formControlName="captcha"></ng-hcaptcha>
+        </div>
+
+    </div>
+
+
+</form>
+
+
+<span class="back m-0 p-0" *ngIf="step === 2" (click)="step = 1">
+       <img class="m-0 p-0" width="20px" src="assets/project/back.svg" alt="Go Back">
+</span>

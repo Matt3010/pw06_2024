@@ -1,0 +1,40 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="row flex-column align-items-center justify-content-center">
+  <div class="col d-flex justify-content-center">
+    <span class="form-title py-3">Access your account!</span>
+  </div>
+  <div class="col p-0">
+    <input type="email" class="form-control my-2" placeholder="Email" formControlName="email"/>
+  </div>
+  <div class="col p-0">
+    <div class="input-group">
+      <input [type]="showPassword ? 'text' : 'password'" class="form-control form-control-password my-2" placeholder="Password" formControlName="password"/>
+      <div class="d-flex align-items-center justify-content-center my-2">
+        <span class="input-group-text"
+              (click)="toggleShowPassword()"
+              role="button">
+          <img *ngIf="!showPassword" class="show-password" src="assets/project/eye-open.svg" alt="open">
+          <img *ngIf="showPassword" class="show-password" src="assets/project/eye-close.svg" alt="close">
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col p-0 text-end">
+    <a routerLink="/auth/send-mail-password" class="my-2">Forgot your password?</a>
+  </div>
+  <div class="col p-0">
+    <button type="submit" class="form-submit-button w-100 my-2" [disabled]="loginForm.invalid">Login</button>
+  </div>
+  <div class="col d-flex justify-content-center p-0 mt-2">
+    <ng-hcaptcha formControlName="captcha"></ng-hcaptcha>
+  </div>
+  <div class="col position-relative error-popup d-flex align-items-center" *ngIf="errors.length > 0">
+
+    <img class="close" (click)="errors = []" width="20px" src="assets/project/close.svg" alt="close">
+
+    <ul class="m-0 p-0">
+      <li *ngFor="let error of errors">
+        {{error | titlecase}}
+      </li>
+    </ul>
+  </div>
+</form>

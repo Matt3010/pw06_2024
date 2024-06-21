@@ -1,0 +1,16 @@
+<div class="m-3 row flex-column">
+    <div class="col-12 m-0 p-0 mt-1 mb-2">
+        <span class="fw-medium">Build your file:</span>
+    </div>
+    <div class="col-12 d-flex flex-row row-container">
+        <div class="col" [class]="enitity.selected ? 'button-10' : 'button-11'"
+             (click)="enitity.selected = !enitity.selected; push(enitity.items, enitity.title, enitity.selected)"
+             *ngFor="let enitity of exportable_entities">
+            <small class="flex-nowrap">{{enitity.title}}</small>
+        </div>
+    </div>
+    <div class="col-12 m-0 p-0 mt-3 mb-2 d-flex justify-content-end" style="gap: 10px;">
+        <button [disabled]="choosenToExport.length === 0" class="button-3" (click)="exportCSV()">Download CSV</button>
+        <button [disabled]="choosenToExport.length === 0" class="button-3 " (click)="exportToXLSX()">Download XLSX</button>
+    </div>
+</div>

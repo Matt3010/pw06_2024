@@ -16,7 +16,6 @@
 ## Register - Step 1
 <img width="1440" alt="register_step_1" src="https://github.com/Matt3010/pw06_2024/assets/73390839/0ffcaa5e-72a1-4383-9357-cf92613e1a90">
 
-
 ## Register - Step 2
 <img width="1440" alt="register_step_2" src="https://github.com/Matt3010/pw06_2024/assets/73390839/772a836a-63ac-461a-bfcc-755fca31bcf4">
 

@@ -1,0 +1,54 @@
+
+.active {
+  background-color: #eeeeee;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+
+.disabled {
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.27) 0px 6px 24px 0px, rgba(0, 0, 0, 0.2) 0px 0px 0px 1px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.container-tab {
+  background-color: #f3f3f3;
+  padding: 3px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: rgb(255, 255, 255) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.widget {
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.datepickder-input, select {
+  width: 300px !important;
+  max-width: 300px !important;
+  border: solid gray 0.5px;
+  padding: 4px;
+}
+
+.element {
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 4px;
+ // box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+
+.buttonClear {
+  background-color: transparent;
+  border: 0;
+}

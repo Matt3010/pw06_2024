@@ -1,0 +1,97 @@
+<form [formGroup]="createForm" (ngSubmit)="create()" class="row row-cols-2 w-50 m-1 p-0 align-items-center">
+
+
+    <div class="col p-1 m-0 d-flex flex-column">
+        <small class="fw-bold">Invoice date</small>
+        <input class="form-control" formControlName="invoiceDate" type="date">
+
+    </div>
+    <div class="col p-1 m-0 d-flex flex-column">
+        <small class="fw-bold">Invoice number</small>
+        <input class="form-control" formControlName="invoiceNumber" type="text">
+    </div>
+
+    <div class="col p-1 m-0 d-flex flex-column">
+        <small class="fw-bold">Supplier</small>
+        <select class="form-select" formControlName="supplierId" aria-label="Default select example">
+            <option *ngFor="let supplier of suppliers$ | async" [value]="supplier.id">{{supplier.fornitore}}</option>
+        </select>
+    </div>
+
+</form>
+
+<hr class="mx-2 separator">
+
+<ng-container #header>
+    <div class="row w-100 m-0 p-0 align-items-center">
+        <div class="col ms-1 ps-1 d-flex flex-column">
+            <small class="fw-bold">Items</small>
+        </div>
+        <div class="col ms-1 ps-1">
+            <small class="fw-bold">Quantity</small>
+        </div>
+        <div class="col ms-1 ps-1">
+            <small class="fw-bold">Unit price</small>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</ng-container>
+<ng-container #body>
+    <div class="row w-100 m-0 p-0 align-items-center">
+        <div class="col m-1 p-1 m-0 d-flex flex-column">
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="itemSelected">
+                <option *ngFor="let item of purchasableItems$ | async" [ngValue]="item">{{item.title}}</option>
+            </select>
+        </div>
+        <div class="col m-1 p-1">
+            <input class="form-control" type="number" [(ngModel)]="quantity">
+        </div>
+        <div class="col m-1 p-1">
+            <input class="form-control" type="number" [(ngModel)]="unitPrice">
+        </div>
+        <div class="col-2 me-1 pe-1">
+            <button [disabled]="unitPrice === 0 || quantity === null || unitPrice === null"  class="form-submit-button w-100" (click)="calc()">Add</button>
+        </div>
+        <div *ngIf="items.length > 0" class="col-1 me-1 pe-1">
+        </div>
+    </div>
+</ng-container>
+
+
+<div class="row item m-1 p-1" *ngFor="let item of items">
+    <div  class="col">
+        {{item.title}}
+    </div>
+    <div  class="col text-truncate d-inline-block d-flex align-items-center" style="max-width: 600px; gap: 10px">
+        {{item.quantity}} <img (click)="modifyOperation(item, '+', 'quantity')" width="20px" src="assets/project/add.svg" alt="add"> <img width="20px" (click)="modifyOperation(item, '-', 'quantity')" src="assets/project/remove.svg" alt="add">
+    </div>
+    <div  class="col text-truncate d-inline-block d-flex align-items-center" style="max-width: 600px; gap: 10px">
+        {{item.unitPrice | currency: '€'}}
+    </div>
+    <div class="col-2 d-flex align-items-center">
+        {{item.ASIN}}
+    </div>
+    <div class="col-auto  d-flex align-items-center">
+        <img class="removeItem" (click)="removeItem(item)" width="20px" src="assets/project/close.svg" alt="">
+    </div>
+</div>
+
+<hr *ngIf="items.length > 0" class="mx-2 separator">
+
+<div *ngIf="items.length > 0" class="row item m-1 p-1">
+    <div  class="col">
+     </div>
+    <div  class="col text-truncate d-inline-block" style="max-width: 600px">
+     </div>
+    <div  class="col text-truncate d-inline-block">
+        Total: {{calculateTotalInvoicePrice() | currency: '€'}}
+
+    </div>
+    <div class="col-2">
+    </div>
+</div>
+
+<div  class="col-12 p-2 m-0 d-flex justify-content-end">
+    <button [disabled]="createForm.invalid || items.length === 0" (click)="create()" class="form-submit-button">Submit</button>
+</div>

@@ -1,0 +1,57 @@
+<div class="row flex-column m-2 mag">
+
+    <div class="col d-flex align-items-center mb-3" *ngIf="router.url.includes('acquisti')" style="gap: 20px;">
+        <span class="col fs-1 fw-bold">Purchases</span>
+        <img (click)="createAddModal()" width="60px" src="assets/project/add.svg" alt="add" style="cursor:pointer">
+    </div>
+
+
+    <div class="col m-0 p-0 outer">
+        <p-table
+                [paginator]="true"
+                [rowsPerPageOptions]="[10, 25, 50, 100]"
+                [rows]="10"
+                sortField="invoiceDate"
+                [sortOrder]="-1"
+                styleClass="p-datatable-striped" [value]="(purchases$ | async)!">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="id">
+                        From
+                        <p-sortIcon field="id"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="invoiceDate">
+                        Invoice date
+                        <p-sortIcon field="invoiceDate"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="invoiceNumber">
+                        Invoice number
+                        <p-sortIcon field="invoiceNumber"></p-sortIcon>
+                    </th>
+                    <th *ngIf="router.url.includes('acquisti')">Actions</th>
+
+            </ng-template>
+            <ng-template pTemplate="body" let-purchase>
+                <tr>
+                    <td>
+                        <span>{{purchase.supplierId.fornitore}}</span>
+                    </td>
+                    <td>
+                        <span>{{purchase.invoiceDate | date:'dd-MM-yyyy hh:mm:ss'}}</span>
+                    </td>
+                    <td>
+                        <span>{{purchase.invoiceNumber}}</span>
+                    </td>
+                    <td *ngIf="router.url.includes('acquisti')">
+                        <div class="d-flex justify-content-start" style="gap: 10px">
+                            <img *ngIf="purchase.items.length > 0" (click)="openModalInvocices(purchase)" style="cursor:pointer" width="17px" src="assets/project/more.svg" alt="Open invoice">
+                            <img (click)="delete(purchase)" class="button" width="30px" src="assets/project/delete-svgrepo-com.svg" alt="delete">
+                            <img (click)="update(purchase)" class="button" width="30px" src="assets/project/pencil.svg" alt="pencil">
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+</div>

@@ -1,0 +1,178 @@
+<div class="row container-tab mb-3" style="gap: 5px;">
+    <div class="col fw-bold clickable d-flex align-items-center justify-content-center" (click)="step = 1;"
+         [class]="step === 2 ? 'active py-1' : 'disabled'">Purchases
+    </div>
+    <div class="col fw-bold clickable d-flex align-items-center justify-content-center" (click)="step = 2;"
+         [class]="step === 1 ? 'active py-1' : 'disabled'">Sales
+    </div>
+</div>
+
+
+<form [formGroup]="weekForm" class="row mx-4 overflow-hidden">
+    <div *ngIf="step === 2" class="col-12 d-flex align-items-center widget mb-4 flex-wrap" style="gap: 4px">
+
+        <div class="element col-auto d-flex flex-column align-items-center">
+            <div>
+                <small>Items:</small>
+                <div class="d-flex align-items-center">
+                    <select class="form-select" aria-label="Default select example" formControlName="item">
+                        <option *ngFor="let item of items$ | async" [ngValue]="item.ASIN">{{item.title}}</option>
+                    </select>
+                    <button *ngIf="weekForm.controls['item'].dirty" class="buttonClear" (click)="weekForm.controls['item'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="element col-auto d-flex align-items-center">
+            <div>
+                <small>Marketplaces:</small>
+                <div class="d-flex align-items-center">
+                    <select class="form-select" aria-label="Default select example" formControlName="marketplaceId">
+                        <option *ngFor="let item of MarkeplaceDictionary"
+                                [ngValue]="item.countryCode">{{item.countryName}}</option>
+                    </select>
+                    <button *ngIf="weekForm.controls['marketplaceId'].dirty" class="buttonClear" (click)="weekForm.controls['marketplaceId'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="element col-auto d-flex align-items-center">
+            <div>
+                <small>From:</small>
+                <div class="d-flex align-items-center">
+                    <input (change)="weekForm.controls['weekRange'].reset();" class="datepickder-input" type="date"
+                           formControlName="startDate">
+                    <button  *ngIf="weekForm.controls['startDate'].dirty" class="buttonClear" (click)="weekForm.controls['startDate'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="element col-auto d-flex align-items-center">
+            <div>
+                <small>To:</small>
+                <div class="d-flex align-items-center">
+                    <input (change)="weekForm.controls['weekRange'].reset();" class="datepickder-input" type="date"
+                           formControlName="endDate">
+                    <button  *ngIf="weekForm.controls['endDate'].dirty" class="buttonClear" (click)="weekForm.controls['endDate'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="element col-auto d-flex align-items-center">
+            <div>
+                <small>Week range:</small>
+                <div class="d-flex align-items-center">
+                    <input (change)="weekForm.controls['endDate'].reset(); weekForm.controls['startDate'].reset()"
+                           class="datepickder-input" type="week" formControlName="weekRange">
+                    <button *ngIf="weekForm.controls['weekRange'].dirty" class="buttonClear" (click)="weekForm.controls['weekRange'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<form [formGroup]="purchaseForm" class="row mx-4 overflow-hidden">
+    <div *ngIf="step === 1" class="col-12 d-flex align-items-center widget mb-4 flex-wrap" style="gap: 4px">
+
+        <div class="element col-auto d-flex flex-column align-items-center">
+            <div>
+                <small>Items:</small>
+                <div class="d-flex align-items-center">
+                    <select class="form-select" aria-label="Default select example" formControlName="item">
+                        <option *ngFor="let item of items$ | async" [ngValue]="item.ASIN">{{item.title}}</option>
+                    </select>
+                    <button *ngIf="purchaseForm.controls['item'].dirty" class="buttonClear" (click)="purchaseForm.controls['item'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="element col-auto d-flex align-items-center">
+            <div>
+                <small>Suppliers:</small>
+                <div class="d-flex align-items-center">
+                    <select class="form-select" aria-label="Default select example" formControlName="supplier">
+                        <option *ngFor="let item of suppliers$ | async" [ngValue]="item.id">{{item.fornitore}}</option>
+                    </select>
+                    <button *ngIf="purchaseForm.controls['supplier'].dirty" class="buttonClear" (click)="purchaseForm.controls['supplier'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="element col-auto d-flex align-items-center">
+            <div>
+                <small>Category:</small>
+                <div class="d-flex align-items-center">
+                    <select class="form-select" aria-label="Default select example" formControlName="category">
+                        <option *ngFor="let item of categories$ | async" [ngValue]="item.id">{{item.category}}</option>
+                    </select>
+                    <button *ngIf="purchaseForm.controls['category'].dirty" class="buttonClear" (click)="purchaseForm.controls['category'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="element col-auto d-flex align-items-center">
+            <div>
+                <small>From:</small>
+                <div class="d-flex align-items-center">
+                    <input (change)="purchaseForm.controls['weekRange'].reset();" class="datepickder-input" type="date"
+                           formControlName="startDate">
+                    <button *ngIf="purchaseForm.controls['startDate'].dirty" class="buttonClear" (click)="purchaseForm.controls['startDate'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="element col-auto d-flex align-items-center">
+            <div>
+                <small>To:</small>
+                <div class="d-flex align-items-center">
+                    <input (change)="purchaseForm.controls['weekRange'].reset();" class="datepickder-input" type="date"
+                           formControlName="endDate">
+                    <button *ngIf="purchaseForm.controls['endDate'].dirty" class="buttonClear" (click)="purchaseForm.controls['endDate'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="element col-auto d-flex align-items-center">
+            <div>
+                <small>Week range:</small>
+                <div class="d-flex align-items-center">
+                    <input (change)="purchaseForm.controls['endDate'].reset(); purchaseForm.controls['startDate'].reset()"
+                           class="datepickder-input" type="week" formControlName="weekRange">
+                    <button *ngIf="purchaseForm.controls['weekRange'].dirty" class="buttonClear" (click)="purchaseForm.controls['weekRange'].reset()">
+                        <img width="20px" src="assets/project/close.svg" alt="x">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </form>
+
+    <div class="col mx-3" *ngIf="step === 1">
+        <app-purchases></app-purchases>
+    </div>
+    <div class="col mx-3" *ngIf="step === 2">
+        <app-sales></app-sales>
+    </div>

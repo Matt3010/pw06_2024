@@ -1,0 +1,10 @@
+<div class="m-1 entry entry-change" (click)="injectoreComponent.destroyComponent(); openChangePswModal();">
+  <span class="entry-text">
+      Change Password
+  </span>
+</div>
+<div class="m-1 entry entry-danger" (click)="injectoreComponent.destroyComponent(); authService.logout();">
+  <span class="entry-text">
+      Logout
+  </span>
+</div>
