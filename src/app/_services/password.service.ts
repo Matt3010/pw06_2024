@@ -25,6 +25,8 @@ export class PasswordService {
     this.http.post(this.apiUrl + '/recover-password', body).subscribe((res: any) => {
       this.spinnerService.hide();
       this.router.navigateByUrl('auth/email-sent');
+    }, (err) => {
+      this.toastSrv.error('Invalid email address', 'WARNING');
     })
   }
 
