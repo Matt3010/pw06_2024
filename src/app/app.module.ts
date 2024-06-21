@@ -32,6 +32,8 @@ import {MdLgComponent} from "./components/modals-templates/md-lg/md-lg.component
 import {InvoiceDetailsComponent} from './components/modals/invoice-details/invoice-details.component';
 import {PanelModule} from "primeng/panel";
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import {MessageService} from "primeng/api";
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
     declarations: [
@@ -74,9 +76,11 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
             languageCode: 'it'
         }),
         PanelModule,
+        ToastModule,
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+        MessageService
     ],
     bootstrap: [AppComponent]
 })
