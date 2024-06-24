@@ -75,7 +75,7 @@ export class AuthService {
             }, (err) => {
                 if (err) {
                     this.spinnerService.hide();
-                this.messageService.add({severity: 'error', summary:'Error', detail: err.error.code})
+                this.messageService.add({severity: 'error', summary:'Error', detail: 'Invalid or expired OTP'})
                 }
             });
     }
